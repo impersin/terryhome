@@ -610,6 +610,13 @@ header{
 	background-repeat: no-repeat;
 	overflow:hidden;
 }
+.portfolio-container{
+	min-height: 500px;
+	text-align: center;
+}
+.portfolio-container h1{
+	color: white ;
+}
 .protfolio .container{
 	padding-top:67px ;
 	padding-bottom:0 ;
@@ -710,7 +717,7 @@ ul.portfolioContainer li{
 	margin:0px;
 	cursor:pointer;
 	border:1px solid #fff;
-	width:24.8%;
+	width:25%;
 }
 ul.portfolioContainer li .lightCon{
 	display:block;
