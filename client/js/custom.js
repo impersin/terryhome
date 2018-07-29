@@ -58,11 +58,23 @@ $(document).ready(function(){
 				});
 		}
 
-		function toggleOpacity(index){
+		function toggleOpacityWithIndex(index){
 			const $items = $('item');
 			for(let i = 0; i < $items.length; i++){
 				let $el = $items[i];
 				if(i === index){
+					$($el).fadeTo('slow','1.0');
+				}else{
+					$($el).fadeTo('slow','0.1');
+				}
+			}
+		}
+
+		function toggleOpacity(name){
+			const $items = $('item');
+			for(let i = 0; i < $items.length; i++){
+				let $el = $items[i];
+				if(name === $($el).text()){
 					$($el).fadeTo('slow','1.0');
 				}else{
 					$($el).fadeTo('slow','0.1');
@@ -78,7 +90,7 @@ $(document).ready(function(){
 		
 		$('item').on('click', function(e){
 				e.preventDefault();
-				
+				toggleOpacity($(this).text());
 				crotation = $('#skill-carousel-container').attr('tcc-rotation');
 				rotation = $(this).attr('tc-rotation');       
 				rotateto = crotation - rotation;
@@ -90,26 +102,22 @@ $(document).ready(function(){
 				e.preventDefault();
 				rotateto -= 60;
 				tcRotate(rotateto);
-				// index = Math.abs(rotateto)/60;
-				// console.log(index);
 				index = index + 1;
 				if(index > 5){
 					index = 0;
 				}
-				toggleOpacity(index);
+				toggleOpacityWithIndex(index);
 				
 		});
 		$('.tc-prev').on('click', function(e){
 				e.preventDefault();
 				rotateto += 60;
 				tcRotate(rotateto);
-				// index = Math.abs(rotateto)/60;
-				// console.log(index);
 				index = index - 1;
 				if(index < -5){
 					index = 0;
 				}
-				toggleOpacity(index);
+				toggleOpacityWithIndex(index);
 				
 		});
 	
