@@ -137,7 +137,8 @@ h5{
 }
 .heading{
 	text-align:center;
-	padding-bottom:70px;
+	min-height: 170px;
+	/* padding-bottom:70px; */
 }
 .heading .container{
 	padding-top:0px !important;
@@ -484,6 +485,9 @@ header{
 	padding-top:66px ;
 	padding-bottom:158px ;
 }
+/* .skillset-container{
+	width: 970px;
+} */
 .skillbar {
 	position:relative;
 	display:block;
@@ -1138,12 +1142,15 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 	position:absolute;
 	left:50%; /* centers the loading animation horizontally one the screen */
 	top:50%; /* centers the loading animation vertically one the screen */
-	background-image:url(../images/preloader.gif); /* path to your loading animation */
+	background-image:url("../images/preloader.gif"); /* path to your loading animation */
 	background-repeat:no-repeat;
 	background-position:center;
 	margin:-100px 0 0 -100px; /* is width and height divided by two */
 }
 #status p{text-align:center;}
+.skillset-mobile-container{
+	display: none;
+}
 
 
 
@@ -1210,8 +1217,26 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 	.navArea {
 		float:none;
 	}
-	
 
+	#skill-carousel-container, .tc-btn-container{
+		display: none !important;
+	}
+	.skillset-mobile-container{
+		/* border: 1px solid; */
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: space-evenly; */
+	}
+	.skill{
+		width: 33.333333%;
+		padding: 5px;
+		border: 1px solid white;
+	}
+	.skill img{
+		width: 100%;
+	}
 	
 }
 
@@ -1235,6 +1260,23 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 	.closeMenu i {
 		line-height:25px;
 	}
+}
+
+@media screen and (max-width: 810px) {
+	/* #skill-carousel-container, .tc-btn-container{
+		display: none !important;
+	}
+	.skillset-mobile-container{
+		border: 1px solid;
+		height: 100%;
+		display: flex;
+	}
+	.skill{
+		width: 20%;
+	}
+	.skill img{
+		width: 100%;
+	} */
 }
 
 
@@ -1285,6 +1327,21 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 	}
 	.navbar-header .navbar-brand{
 		float:right;
+	}
+
+	.aboutus img {
+    padding: 7px;
+    display: block;
+    border: 1px solid #bab4bb;
+		max-width: 45%;
+		/* min-width: 300px; */
+    margin: 0 auto;
+		margin-bottom: 35px;
+	}
+
+	.expertiesdesc{
+		padding: 0 0 0 0;
+    border-left: 0px;
 	}
 
 	
