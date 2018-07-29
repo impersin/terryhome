@@ -76,6 +76,7 @@ $(document).ready(function(){
 				let $el = $items[i];
 				if(name === $($el).text()){
 					$($el).fadeTo('slow','1.0');
+					index = i;
 				}else{
 					$($el).fadeTo('slow','0.1');
 				}
