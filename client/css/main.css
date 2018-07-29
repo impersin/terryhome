@@ -564,6 +564,11 @@ header{
 	justify-content: center;
 	min-height: 144px;
 }
+
+.expertiesico-mobile{
+	display: none;
+}
+
 .expertiesdesc {
 	border-left:2px solid #ada5ad;
 	padding:0 0 0 69px;
@@ -573,7 +578,7 @@ header{
 	padding-bottom:0;
 }
 .expertiesdesc h4 {
-	font-size:14px;
+	font-size:20px;
 	font-weight:300;
 	/* color:#UIzards; */
 	line-height:normal;
@@ -599,6 +604,10 @@ header{
 	padding-top:65px ;
 	padding-bottom:0 ;
 	margin-bottom:-20px;
+}
+
+.expertiesico-mobile-icon{
+	display: none;
 }
 
 
@@ -1343,6 +1352,23 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 	.expertiesdesc{
 		padding: 0 0 0 0;
     border-left: 0px;
+	}
+
+	.expertiesdesc h4{
+		font-size: 20px;
+    margin-bottom: 15px;
+	}
+
+	.expertiesico{
+		display: none;
+	}
+	.expertiesico-mobile{
+		display: block;
+	}
+
+	.expertiesico-mobile-icon{
+		display: inline-block;
+		margin-right: 10px;
 	}
 	
 }
