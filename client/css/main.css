@@ -1260,6 +1260,7 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 	.closeMenu i {
 		line-height:25px;
 	}
+	
 }
 
 @media screen and (max-width: 810px) {
@@ -1343,7 +1344,6 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 		padding: 0 0 0 0;
     border-left: 0px;
 	}
-
 	
 }
 
