@@ -161,7 +161,8 @@ $(window).load(function(){
             easing: 'linear',
             queue: false
         }
-    });
+		});
+
  
     $('.portfolioFilter a').click(function(){
         $('.portfolioFilter .current').removeClass('current');
@@ -177,7 +178,9 @@ $(window).load(function(){
             }
          });
          return false;
-    }); 
+		}); 
+		
+		$('#portfolio-veeh').trigger('click');
 
 
 

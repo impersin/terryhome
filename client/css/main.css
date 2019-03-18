@@ -762,9 +762,8 @@ ul.portfolioContainer li:hover span.hoverBox{
 	visibility:visible;
 	left:0px;
 	bottom: 0px;
-	
-	background: rgba(76, 64, 78, 0.9);
-	
+	/* background: rgba(76, 64, 78, 0.9); */
+	background: transparent;
 	transition-duration: 0.2s;
 	-webkit-transition-duration: 0.2s;
 }
@@ -1034,7 +1033,10 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 }
 
 #message {
-	margin-bottom:30px;
+	margin-bottom:40px;
+}
+.contact-loader{
+
 }
 .cinfoBox{
 	padding-bottom:40px;
@@ -1066,6 +1068,9 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 	color:#ff554e;
 }
 
+.loader-container{
+	min-height: 394px;
+}
 /*----------------------------------------------------
 	 10. Footer Style
 ------------------------------------------------------*/
