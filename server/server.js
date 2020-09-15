@@ -19,24 +19,24 @@ app.post('/sendemail',(req, res)=>{
   const html = req.body.comments; 
   const userName = req.body.name;
 
-// sendmail({
-//   from,
-//   to: 'taegyuleem@gmail.com',
-//   subject: `Get in touch from ${userName}`,
-//   html,
-// }, function(err, reply) {
-//   if(err){
-//     console.log(err && err.stack);
-//   }else{
-//     console.dir(reply);
-//     res.json(reply);
-//   }
-// });
-  // res.sendStatus(200);
+  // sendmail({
+  //   from,
+  //   to: 'taegyuleem@gmail.com',
+  //   subject: `Get in touch from ${userName}`,
+  //   html,
+  // }, function(err, reply) {
+  //   if(err){
+  //     console.log(err && err.stack);
+  //   }else{
+  //     console.dir(reply);
+  //     res.json(reply);
+  //   }
+  // });
+  //   res.sendStatus(200);
   setTimeout(()=>{
     res.json(200);
   },3000);
-})
+});
 
 const port = process.env.PORT || 3000;
 
