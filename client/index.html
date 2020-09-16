@@ -17,6 +17,7 @@
 <link rel="icon" href='./images/favicons/favicon_terry.png'>
 <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/custom-lightbox.css">
 <link rel="stylesheet" type="text/css" media="screen" href="css/skillCarousel.css">  
 <!--google font style-->
 <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
@@ -73,8 +74,8 @@
     <!--banner start-->
     <div class="banner row" id="banner">
     <div class="bannerText">
-        <h1>I'm Taegyu Leem</h1>
-        <h3>Frontend Engineer @Veeh</h3>
+        <h1>Taegyu Leem</h1>
+        <h3>Frontend Engineer</h3>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 noPadd slides-container" style="height:100%"> 
         <!--background slide show start-->
@@ -82,10 +83,10 @@
           <img id="slide-image-1" src="https://s3-us-west-1.amazonaws.com/taegyudocs/myhome/header_img_1.jpg" alt="image01">
         </div> -->
         <div class="slide"> 
-          <img id="slide-image-2" src="https://s3-us-west-1.amazonaws.com/taegyudocs/myhome/header_img_2.jpg" alt="image02">
+          <img id="slide-image-1" src="https://s3-us-west-1.amazonaws.com/taegyudocs/myhome/header_img_2.jpg" alt="image02">
         </div>
         <div class="slide"> 
-          <img id="slide-image-3" src="https://s3-us-west-1.amazonaws.com/taegyudocs/myhome/header_img_3.jpg" alt="image03">
+          <img id="slide-image-2" src="./images/AirBrush_20200222200307.jpg" alt="image03">
         </div>
         <!--background slide show end--> 
       </div>
@@ -102,7 +103,7 @@
        <div class="col-md-12">
       	<div class="heading">
         <h2>About me</h2>
-        <h3>Introduction about my self</h3>        
+        <!-- <h3>Introduction about my self</h3>         -->
       </div>
       </div> 
        </div> 
@@ -111,16 +112,17 @@
         <img src="images/aboutme_img.jpg" alt="">
       </div>
       	<div class=" col-lg-7 col-md-7 col-sm-7 col-xs-12 pull-left media">
-        	<h5>Taegyu Leem</h5>
-            <h4> Frontend Engineer from Veeh</h4>
-            <p>
+        	<!-- <h5>Taegyu Leem</h5>
+            <h4> Frontend Engineer</h4> -->
+            <p id="about-me">
               I’ve been a software engineer with focus on frontend for over 3 years. I care deeply about making people’s lives more enjoyable and easy to navigate online.  
-              Before becoming a software engineer, I had a unique career as a professional teppanyaki chef for 8 years. From washing dishes to becoming the head chef, I successfully worked my way up. However, the desire to build something never died in me. I stumbled upon the Hack Reactor program through a customer and got too excited that I immediately quit my job and started coding.
-              After Hack Reactor, I became employee #1 at Veeh. It was a privilege to experience the Alchemist Accelerator program and to work directly with three founders in a quickly pivoting environment. It helped me become a quick and accurate decision making software engineer who can deliver highest quality work within an estimated timeline. I was the sole owner of the entire frontend for our two-sided marketplace and machine learning based camera sensor device for audience demographic analytics.
+              Before becoming a software engineer, I had a unique career as a professional teppanyaki chef for 8 years.<br/><br/>
+              From washing dishes to becoming the head chef, I successfully worked my way up. However, the desire to build something never died in me. I stumbled upon the Hack Reactor program through a customer and got too excited that I immediately quit my job and started coding.<br/><br/>
+              After Hack Reactor, I became employee #1 at Veeh. It was a privilege to experience the Alchemist Accelerator program and to work directly with three founders in a quickly pivoting environment. It helped me become a quick and accurate decision making software engineer who can deliver highest quality work within an estimated timeline.<br/><br/>
               Right now, I’m excited to apply my skill set to build more complicated applications and to work towards becoming a more seasoned full-stack software engineer.
             </p>
             <p>
-              <a role="button" class="btn btn-primary btn-lg">Download Printable Resume</a>
+              <a href="./resume/Taegyu_Resume_Fall2020.pdf" download role="button" class="btn btn-primary btn-lg">Resume</a>
             </p>
         </div>
       	
@@ -134,12 +136,58 @@
       <div class="row">
         <div class="col-md-12">
           <div class="heading">
-            <h2>Skills &amp; Expertice</h2>
-            <h3>I love all these cool stuff</h3>        
+            <h2 id="skills-header">Skills &amp; Expertice</h2>
+            <!-- <h3>I love all these cool stuff</h3>         -->
           </div>
           <div id="carousel">
               <div id="skill-carousel-container" tcc-rotation="0">
                 <item tc-rotation="0" style="transform: rotateY(0deg) translateZ(300px)">
+                  <img src="./images/skills/react_redux.png">
+                  <div class="skill-title">
+                      <span>React · Redux</span>
+                    </div>
+                </item>
+                <item tc-rotation="60" style="transform: rotateY(60deg)  translateZ(300px)">
+                  <img src="./images/skills/node.png">
+                  <div class="skill-title">
+                    <span>
+                      Node.js
+                    </span>
+                  </div>
+                </item>
+                <item tc-rotation="120" style="transform: rotateY(120deg) translateZ(300px)">
+                  <img src="./images/skills/html_css_js.png">
+                  <div class="skill-title">
+                    <span>
+                      HTML5 · CSS · JS
+                    </span>
+                  </div>
+                </item>
+                <item tc-rotation="180" style="transform: rotateY(180deg) translateZ(300px)">
+                  <img src="./images/skills/babel_webpack.png">
+                  <div class="skill-title">
+                    <span>
+                      Babel · Webpack
+                    </span>
+                  </div>
+                </item>
+                <item tc-rotation="240" style="transform: rotateY(240deg) translateZ(300px)">
+                  <img src="./images/skills/mongo_sql.png">
+                  <div class="skill-title">
+                    <span>
+                      MongoDB · SQL
+                    </span>
+                  </div>
+                </item>
+                <item tc-rotation="-60" style="transform: rotateY(-60deg) translateZ(300px)">
+                  <img src="./images/skills/bootstrap_jquery.png">
+                  <div class="skill-title">
+                    <span>
+                      Bootstrap · jQuery
+                    </span>
+                  </div>
+                </item>
+                <!-- <item tc-rotation="0" style="transform: rotateY(0deg) translateZ(300px)">
                   <img src="./images/skills/html_css_js.png">
                   <div class="skill-title">
                     HTML5 CSS JS
@@ -174,7 +222,7 @@
                   <div class="skill-title">
                     BOOTSTRAP JQUERY
                   </div>
-                </item>
+                </item> -->
               </div>
               <nav class="tc-btn-container">
                 <div class="tc-next">
@@ -189,37 +237,47 @@
                   <div class="skill">
                     <img src="./images/skills/html_css_js.png">
                     <div class="skill-title">
-                      HTML5 CSS JS
+                      <span>
+                        HTML5 · CSS · JS
+                      </span>
                     </div>
                   </div>
                   <div class="skill">
                     <img src="./images/skills/node.png">
                     <div class="skill-title">
-                        NODE
+                      <span>
+                        Node.JS
+                      </span>
                     </div>
                   </div>
                   <div class="skill">
                     <img src="./images/skills/react_redux.png">
                     <div class="skill-title">
-                        REACT REDUX
+                      <span>React · Redux</span>
                       </div class="skill-title">
                   </div>
                   <div class="skill">
                     <img src="./images/skills/babel_webpack.png">
                     <div class="skill-title">
-                      BABEL WEBPACK
+                      <span>
+                        Babel · Webpack
+                      </span>
                     </div>
                   </div>
                   <div class="skill">
                     <img src="./images/skills/mongo_sql.png">
                     <div class="skill-title">
-                      MongoDB SQL
+                      <span>
+                        MongoDB · SQL
+                      </span>
                     </div>
                   </div>
                   <div class="skill">
                     <img src="./images/skills/bootstrap_jquery.png">
                     <div class="skill-title">
-                      BOOTSTRAP JQUERY
+                      <span>
+                        Bootstrap · jQuery
+                      </span>
                     </div>
                   </div>
               </div>
@@ -273,13 +331,13 @@
   <section id="experience" class="myexperties">
   	<div class="container">
         <div class="heading">
-        <h2>Work Experience</h2>
-        <h3>My Career</h3>        
+        <h2>Experience</h2>
+        <!-- <h3>My Career</h3>         -->
       </div>
       <div class="row media">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
             <div class="expertiesico">
-                October, 2017<br>Present
+                Oct, 2017<br>Present
               </div>
           </div>
         <div class="expertiesdesc col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -288,7 +346,16 @@
               <div class="expertiesico-mobile">
                   <h5>October, 2017 - Present<h5>
                 </div>
-              <p>Cras dictum tellus dui, vitae sollicitudin ipsum tincidunt adipiscing atgfnte varius at. Sed mollis vestibulum sapien sed mattis.Cras dictum tellus duvi, vitae sollicitud tyinstfg duvipsum tincidunt adipiscing ante varius at. Sed mollis ves tibulum Sed mollis vestibu lum sapien sed matti sapien sed mattis.</p>
+              <p>
+                <ul class="">
+                  <li>Worked directly with founders as employee #1</li>
+                  <li>Sole owner of entire front-end (React / Redux) for two-sided marketplace website</li>
+                  <li>Launched machine learning based camera sensor device for audience demographic</li>
+                  <li>Built internal administrator tool to manage inquiries and campaigns</li>
+                  <li>Developed and designed API with consistently named endpoint and behavior</li>
+                  <li>Managed deployment, database backup and migration</li>
+                </ul>
+              </p>
           </div>
       </div>
     </div>
@@ -298,42 +365,53 @@
   <section id="education" class="educationdiploma">
   	<div class="container">
         <div class="heading">
-        <h2>Education &amp; Diplomas</h2>
+        <h2>Education</h2>
         <!-- <h3>I can say i’m quite good at</h3>         -->
       </div>
-        
-        <div class="row media">
+      <div class="row media educations">
+          <div class="left">
+            <div class="expertiesico">
+              <img src="images/hackreactor.png" alt="Hack_React_logo_img" >
+            </div>
+            <div class="name">
+                <h4>Hack Reactor</h4>
+                <h5>Fullstack Web Development</h5>
+            </div>
+          </div>
+          <div class="right">
+            <div class="expertiesico">
+              <img src="images/daelim.png" alt="Daelim_University_Logo_img" >
+            </div>
+            <div class="name">
+              <h4>Daelim University</h4>
+              <h5>Mechanical Engineering</h5>
+            </div>
+          </div>
+      </div>
+        <!-- <div class="row media">
         	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
             	<div class="expertiesico">
-                  <!-- December,2016<br>March 2017 -->
-                <img src="images/hackreactor.png" alt="Hack_React_logo_img" width="100px" height="100px">
+                <img src="images/hackreactor.png" alt="Hack_React_logo_img" >
               </div>
             </div>
         	<div class="expertiesdesc col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            	<h4><img class="expertiesico-mobile-icon" src="images/hackreactor.png" alt="Hack_React_logo_img" width="30px" height="30px">Hack Reactor</h4>
+            <img class="expertiesico-mobile-icon" src="images/hackreactor.png" alt="Hack_React_logo_img" width="30px" height="30px">
+            	<h4>Hack Reactor</h4>
                 <h5>Fullstack Web Development</h5>
-                <p>
-                  Cras dictum tellus dui, vitae sollicitudin ipsum tincidunt adipiscing atgfnte varius at. Sed mollis vestibulum sapien sed mattis.Cras dictum tellus duvi, vitae sollicitud tyinstfg duvipsum tincidunt adipiscing ante varius at. Sed mollis ves tibulum Sed mollis vestibu
-                  lum sapien sed matti sapien sed mattis.
-                </p>
             </div>
         </div>
         <div class="row media">
         	<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
             	<div class="expertiesico">
-                  <!-- Mar,2011<br>January 2011 -->
-                  <img src="images/daelim.png" alt="Daelim_University_Logo_img" width="100px" height="100px">
+                  <img src="images/daelim.png" alt="Daelim_University_Logo_img" >
                 </div>
             </div>
         	<div class="expertiesdesc col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            	<h4><img class="expertiesico-mobile-icon" src="images/daelim.png" alt="Daelim_University_Logo_img" width="30px" height="30px">Daelim University</h4>
+            <img class="expertiesico-mobile-icon" src="images/daelim.png" alt="Daelim_University_Logo_img" width="30px" height="30px">
+            	<h4>Daelim University</h4>
                 <h5>Mechanical Engineering</h5>
-                <p>
-                  Cras dictum tellus dui, vitae sollicitudin ipsum tincidunt adipiscing atgfnte varius at. Sed mollis vestibulum sapien sed mattis.Cras dictum tellus duvi, vitae sollicitud tyinstfg
-                  duvipsum tincidunt adipiscing ante varius at. Sed mollis ves tibulum Sed mollis vestibu lum sapien sed matti sapien sed mattis.
-                </p>
             </div>
-        </div>
+        </div> -->
     </div>
   </section>
   <!--Education & diploma end -->
@@ -341,115 +419,102 @@
   
   <!--portfolio start-->
 	<section class="protfolio" id="ourwork">
-    <div class="container">
+    <!-- <div class="container"> -->
         <div class="heading portfolio-heading">
             <h2>Portfolio</h2>
-            <h3>What I have done in my academic career</h3>            
+            <!-- <h3>What I have done in my academic career</h3>             -->
         </div>
-    </div>
+    <!-- </div> -->
     <div class="row">
-      <!-- <div class="portfolio-container">
-        <div>
-          <h1>1</h1>
+      <!-- <div class="portfolioFilter"> -->
+        <!-- <ul> -->
+          <!-- <li><a href="https://www.veeh.co">Veeh</a></li> -->
+          <!-- <li><a href="www.veeh.co" data-filter="*" class="current">Veeh</a></li> -->
+          <!-- <li><a href="#" data-filter=".veeh">VEEH</a></li> -->
+        <!-- </ul> -->
+      <!-- </div> -->
+      <div class="row">
+        <div class="portfolio-list">
+          <!-- <div class="project-name-container">
+            <a id="veeh" href="https://www.veeh.co" target="_blank">Veeh</a>
+          </div> -->
+          <div class="column">
+            <div class="left">
+              <img src="https://taegyudocs.s3-us-west-1.amazonaws.com/myhome/veeh_porfolio_1.png" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+            </div>
+            <div class="right">
+              <div class="project-name-container">
+                <a id="veeh" href="https://www.veeh.co" target="_blank">Veeh</a>
+              </div>
+               <div class="about-company">Veeh is an Alchemist Accelerator-backed B2B marketplace with $40,000+ monthly transactions which helps advertisers to hyper-target audiences through local businesses.</div> 
+            </div>
+          </div>
+          <!-- <div class="column">
+            <img src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+          </div> -->
         </div>
-        <div>
-          <h1>2</h1>
+        <!-- <div class="column">
+          <img src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
         </div>
-        <div>
-          <h1>3</h1>
+        <div class="column">
+          <img src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+        </div> -->
+      </div>
+    </div>
+    <div id="myModal" class="modal">
+      <span class="close cursor" onclick="closeModal()">&times;</span>
+      <div class="modal-content">
+    
+        <div class="mySlides">
+          <div class="numbertext">1 / 4</div>
+          <img src="https://taegyudocs.s3-us-west-1.amazonaws.com/myhome/veeh_porfolio_1.png" style="width:100%">
         </div>
-      </div> -->
-      <!-- <div class="portfolioFilter">
-        <ul>
-          <li><a href="#" data-filter="*" class="current">ALL</a></li>
-          <li><a href="#" data-filter=".veeh">VEEH</a></li>
-        </ul>
-      </div> -->
-      <!-- <div class="portfolio-container">
-        <h1>
-          Working on it :)
-        </h1>
-      </div> -->
+    
+        <div class="mySlides">
+          <div class="numbertext">2 / 4</div>
+          <img src="https://taegyudocs.s3-us-west-1.amazonaws.com/myhome/veeh_porfolio_2.png" style="width:100%">
+        </div>
 
-      <!-- <ul class="portfolioContainer row">
-        <li class="veeh col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/veeh_landing_lg.png" title="Veeh: Local Marketing Through Local People www.veeh.co" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/veeh_landing_thumb.png" alt="" > </div>
-        </li>
-        <li class="veeh col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/veeh_srp_lg.png" title="Veeh: Local Marketing Through Local People www.veeh.co" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/veeh_srp_thumb.png" alt="" > </div>
-        </li>
-        <li class="veeh col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/veeh_publisher_lg.png" title="Veeh: Local Marketing Through Local People www.veeh.co" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/veeh_publisher_thumb.png" alt="" > </div>
-        </li>
-        <li class="veeh col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/veeh_inquiry_lg.png" title="Veeh: Local Marketing Through Local People www.veeh.co" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/veeh_inquiry_thumb.png" alt="" > </div>
-        </li> 
-        <li class="veeh wordpress col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/12.jpg" title="Project Title4" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb12.jpg" alt="" > </div>
-        </li>
-        <li class="webdesign col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/1.jpg" title="Project Title2" class="zoom lb lb_warsaw1"><i class="fa fa-plus fa-2x"></i></a> </span> </span> <img src="images/projects/thumb-images/thumb1.jpg" alt="" > </div>
-        </li>
-        <li class="webdesign col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/2.jpg" title="Project Title2" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb2.jpg" alt="" > </div>
-        </li>
-      </ul> -->
-      <ul class="portfolioContainer row">
-        <li class="template col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon">
-             <span class="hoverBox"> 
-               <span class="smallIcon"> 
-                  <a rel="lightbox-demo" href="images/projects/big-images/1.jpg" title="Project Title2" class="zoom lb lb_warsaw1">
-                    <i class="fa fa-plus fa-2x"></i>
-                  </a> 
-                </span> 
-              </span> 
-              <img src="images/projects/thumb-images/thumb1.jpg" alt="" > 
+        <div class="mySlides">
+          <div class="numbertext">3 / 4</div>
+          <img src="https://taegyudocs.s3-us-west-1.amazonaws.com/myhome/veeh_porfolio_3.png" style="width:100%">
+        </div>
+    
+        <!-- <div class="mySlides">
+          <div class="numbertext">3 / 4</div>
+          <img src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%">
+        </div>
+        
+        <div class="mySlides">
+          <div class="numbertext">4 / 4</div>
+          <img src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%">
+        </div> -->
+        
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    
+        <div class="caption-container">
+          <div id="caption"></div>
+        </div>
+    
+        <div class="thumbnail-container">
+          <div class="column bullet-image">
+            <img class="demo cursor" src="https://taegyudocs.s3-us-west-1.amazonaws.com/myhome/veeh_porfolio_1.png" style="width:100%" onclick="currentSlide(1)" alt="Veeh landing page">
           </div>
-        </li>
-        <li class="template wordpress illustration col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> 
-            <span class="hoverBox"> 
-              <span class="smallIcon"> 
-                <a rel="lightbox-demo" href="images/projects/big-images/2.jpg" title="Project Title2" class="zoom lb lb_warsaw1">
-                  <i class="fa fa-search fa-2x"></i>
-                </a>  
-              </span> 
-            </span> 
-            <img src="images/projects/thumb-images/thumb2.jpg" alt="" > 
+          <div class="column bullet-image">
+            <img class="demo cursor" src="https://taegyudocs.s3-us-west-1.amazonaws.com/myhome/veeh_porfolio_2.png" style="width:100%" onclick="currentSlide(2)" alt="Search result page">
           </div>
-        </li>
-        <!-- <li class="wordpress illustration col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/3.jpg" title="Project Title3" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb3.jpg" alt="" > </div>
-        </li>
-        <li class="webdesign wordpress col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/4.jpg" title="Project Title4" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb4.jpg" alt="" > </div>
-        </li>
-        <li class="wordpress template col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/5.jpg" title="Project Title5" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb5.jpg" alt="" > </div>
-        </li>
-        <li class="template webdesign illustration col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/6.jpg" title="Project Title6" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb6.jpg" alt="" > </div>
-        </li>
-        <li class="wordpress template col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/7.jpg" title="Project Title7" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb7.jpg" alt="" > </div>
-        </li>
-        <li class="template webdesign illustration col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/8.jpg" title="Project Title8" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb8.jpg" alt="" > </div>
-        </li>
-        <li class="template col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/9.jpg" title="Project Title1" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb9.jpg" alt=""  > </div>
-        </li>
-        <li class="template wordpress col-xs-6 col-sm-3 col-md-4 col-lg-4">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/10.jpg" title="Project Title2" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb10.jpg" alt="" > </div>
-        </li>
-        <li class="wordpress col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/11.jpg" title="Project Title3" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb11.jpg" alt="" > </div>
-        </li>
-        <li class="template wordpress col-xs-6 col-sm-4 col-md-3 col-lg-3">
-          <div class="lightCon"> <span class="hoverBox"> <span class="smallIcon"> <a rel="lightbox-demo" href="images/projects/big-images/12.jpg" title="Project Title4" class="zoom lb lb_warsaw1"><i class="fa fa-search fa-2x"></i></a>  </span> </span> <img src="images/projects/thumb-images/thumb12.jpg" alt="" > </div>
-        </li> -->
-      </ul>
+          <div class="column bullet-image">
+            <img class="demo cursor" src="https://taegyudocs.s3-us-west-1.amazonaws.com/myhome/veeh_porfolio_3.png" style="width:100%" onclick="currentSlide(3)" alt="Publisher detail page">
+          </div>
+          <!-- <div class="column">
+            <img class="demo cursor" src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
+          </div> -->
+        </div>
+      </div>
     </div>
   </section>
   <!--portfolio end-->   
@@ -470,10 +535,10 @@
   <!-- </section> -->
   <section class="contactDetails">
     <div class="container"> 
-    <div class="heading">
+      <div class="heading">
         <h2>Get In Touch</h2>
         <!-- <h2>Drop a email</h2> -->
-        <h3>Please feel free if you would like to have a chat.</h3>       
+        <h3 id="email"><a href="mailto: taegyuleem@gmail.com" target="_blank">taegyuleem@gmail.com</a></h3>       
       </div>
       <!--contact form start-->
       <!-- <div class="row media">      	 
@@ -502,9 +567,9 @@
   <section class="footer" id="footer">
     <div class="container">
       <ul>
-        <li><a href="#"><i class="fab fa-twitter-square fa-2x"></i></a></li>
-        <li><a href="#"><i class="fab fa-facebook-square fa-2x"></i></a></li>
-        <li><a href="#"><i class="fab fa-linkedin fa-2x"></i></a></li>
+        <!-- <li><a href="#"><i class="fab fa-twitter-square fa-2x"></i></a></li>
+        <li><a href="#"><i class="fab fa-facebook-square fa-2x"></i></a></li> -->
+        <li><a href="https://www.linkedin.com/in/impersin/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></li>
       </ul>
     </div>
     <p class="text-center"><a href="#wrapper" class="gototop"><i class="fa fa-chevron-up fa-2"></i></a></p>
@@ -544,6 +609,7 @@
 <script type="text/javascript" src="js/jquery.easing.js"></script> 
 <script type="text/javascript" src="js/jquery.mousewheel.js"></script> 
 <script type="text/javascript" defer src="js/slideroption.js"></script> 
+<script type="text/javascript" defer src="js/custom-lightbox.js"></script> 
 
 <!--for theme custom jquery--> 
 <script type="text/javascript" src="js/custom.js"></script>

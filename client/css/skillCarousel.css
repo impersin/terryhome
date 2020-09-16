@@ -34,14 +34,16 @@ item {
 
 item img { 
   width: 100%;
-  background-color: #f8f8f8;
+  background-color: #1b1a1b;
 }
 
 .skill-title{
   width: 100%;
-  color:#444;
+  color:#fff;
   /* border:1px solid; */
   text-align: center;
+  text-transform: capitalize;
+  font-weight:700;
 }
 
 .skill-title:hover{
@@ -60,8 +62,8 @@ item img {
 }
 
 .tc-next {
-  background-color: #f8f8f8;
-  color: #444;
+  background-color: #1b1a1b;
+  color: #fff;
   display: block;
   float: right;
   font-size: 12px;
@@ -71,12 +73,19 @@ item img {
 }
 
 .tc-prev {
-  background-color: #f8f8f8;
-  color: #444;
+  background-color: #1b1a1b;
+  color: #fff;
   display: block;
   float: left;
   font-size: 12px;
   padding: 10px;
   width: auto;
   cursor: pointer;
+}
+
+@media screen and (max-width: 767px){
+  .skill-title{
+    color: #372d38 !important;
+    font-weight: 400;
+  }
 }

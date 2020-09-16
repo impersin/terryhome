@@ -78,6 +78,10 @@ img {
 	padding:0px !important;
 }
 
+.container{
+	border-bottom: 1px solid #efefef;
+}
+
 p{
 	font-size:13px;
 	line-height:27px;
@@ -85,6 +89,11 @@ p{
 	padding-bottom:33px;
 	margin:0px;
 }
+
+p#about-me{
+	font-size: 14px;
+}
+
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	color:#000;
 }
@@ -137,7 +146,7 @@ h5{
 }
 .heading{
 	text-align:center;
-	min-height: 170px;
+	min-height: 120px;
 	/* padding-bottom:70px; */
 }
 .heading .container{
@@ -154,18 +163,18 @@ h5{
 	letter-spacing:2px;
 	display:inline-block;
 	position:relative;
+	padding-bottom: 0;
 }
 .heading h2:after {
-	content:"";
-	display:block;
-	width:76px;
-	height:2px;
-	background:#5b4c5c;
-	position:absolute;
-	bottom:0;
-	left:50%;
-	margin-left:-38px;
+	content: "";
+	display: block;
+	width: 100%;
+	height: 2px;
+	background: #5b4c5c;
+	position: absolute;
+	bottom: 0;
 }
+
 .heading h3{
 	font-size:18px;
 	line-height:30px;
@@ -195,7 +204,7 @@ header{
 	background:#CACACA;
 }
 .patternOverlay {
-	background:#372d38;
+	background:#1b1a1b;
 	position:absolute;
 	top:0;
 	right:0;
@@ -442,13 +451,12 @@ header{
 	text-align:left;
 }
 .aboutus .container{
-	padding-top:80px ;
-	padding-bottom:47px ;
+	padding-top:60px ;
 }
 .aboutus img {
 	padding:7px;
 	display:block;
-	border:1px solid #bab4bb;
+	/* border:1px solid #bab4bb; */
 }
 .aboutus .heading p{
 	padding-bottom:41px;
@@ -477,17 +485,21 @@ header{
 	5. Skill & Expert Style
 ------------------------------------------------------*/
 .skillset {
-	background:#f8f8f8;
+	background:#1b1a1b;
 	display:table;
 	width:100%;
 }
 .skillset .container{
-	padding-top:66px ;
-	padding-bottom:158px ;
+	padding-top:60px ;
+	min-height: 540px;
+	/* padding-bottom:158px ; */
 }
 /* .skillset-container{
 	width: 970px;
 } */
+h2#skills-header{
+	color: #fff !important;
+}
 .skillbar {
 	position:relative;
 	display:block;
@@ -548,10 +560,49 @@ header{
 	background:#fff;
 }
 .myexperties .container{
-	padding-top:67px ;
-	padding-bottom:0 ;
-	margin-bottom:-20px;
+	padding-top:60px ;
+	/* margin-bottom:-20px; */
 }
+
+div.row.media.educations{
+	display: flex;
+	height:100px;
+	/* border:1px solid; */
+}
+
+div.row.media.educations .left{
+	display: flex;
+	/* border:1px solid; */
+	width: 50%;
+	justify-content: center;
+	
+}
+
+div.row.media.educations .right{
+	display: flex;
+	/* border:1px solid; */
+	width: 50%;
+	justify-content: center;
+}
+
+div.row.media.educations .name{
+	display: flex;
+	flex-direction: column;
+	/* align-items: center; */
+	justify-content: center;
+}
+
+div.row.media.educations h4{
+	text-transform: capitalize;
+	padding-bottom: 0;
+}
+
+div.row.media.educations h5{
+	font-family:'Crimson Text',serif;
+	font-style:italic;
+	padding-bottom: 0;
+}
+
 .expertiesico {
 	display: flex;
 	text-align:right;
@@ -561,8 +612,15 @@ header{
 	color:#5b4c5c;
 	font-style:italic;
 	align-items: center;
-	justify-content: center;
-	min-height: 144px;
+	justify-content: flex-end;
+	padding-right: 15px;
+	/* min-height: 144px; */
+}
+
+.expertiesico img{
+	width: 50px;
+	position: relative;
+	top: -2px;
 }
 
 .expertiesico-mobile{
@@ -570,8 +628,8 @@ header{
 }
 
 .expertiesdesc {
-	border-left:2px solid #ada5ad;
-	padding:0 0 0 69px;
+	/* border-left:2px solid #ada5ad;
+	padding:0 0 0 69px; */
 	margin-bottom:100px;
 }
 .expertiesdesc p {
@@ -582,7 +640,7 @@ header{
 	font-weight:300;
 	/* color:#UIzards; */
 	line-height:normal;
-	text-transform:uppercase;
+	text-transform:capitalize;
 	letter-spacing:2px;
 }
 .expertiesdesc h5 {
@@ -593,17 +651,21 @@ header{
 	font-weight:400;
 }
 
+.expertiesdesc ul{
+	line-height: 2.0;
+	margin-left:15px;
+}
+
 /*----------------------------------------------------
 	7. Education & Diplomas Style
 ------------------------------------------------------*/
 
 .educationdiploma {
-	background:#f8f8f8;
+	background:#fff;
 }
 .educationdiploma .container{
-	padding-top:65px ;
-	padding-bottom:0 ;
-	margin-bottom:-20px;
+	padding-top:60px;
+	padding-bottom:60px;
 }
 
 .expertiesico-mobile-icon{
@@ -622,6 +684,7 @@ header{
 	background-position: center;
 	background-repeat: no-repeat;
 	overflow:hidden;
+	padding: 60px 10px;
 }
 .portfolio-container{
 	display: flex;
@@ -633,17 +696,23 @@ header{
 	color: white ;
 }
 .protfolio .container{
-	padding-top:67px ;
+	padding-top:20px ;
 	padding-bottom:0 ;
 }
 .protfolio .heading {
-	padding-bottom:50px;
+	min-height: 100%;
+	margin-bottom: 20px;
 }
 .protfolio .protBox{
 	padding-top:0 ;
 	padding-bottom:0 ;
 	position:relative;
 }
+
+.portfolio-heading h2{
+	color: white;
+}
+
 .portfolio-heading h3{
 	color: white;
 	font-weight: 400;
@@ -659,6 +728,45 @@ header{
 	display:block;
 	margin:0 auto;
 	text-align: center;
+}
+
+div.portfolio-list{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+div.portfolio-list .column{
+	display: flex;
+	justify-content: center;
+}
+
+div.portfolio-list .column .left{
+	display: flex;
+	width: 50%;
+	justify-content: center;
+	overflow: hidden;
+}
+
+div.portfolio-list .column .left img { 
+	width: 70%; 
+	transition: 0.5s all ease-in-out; 
+} 
+ 
+div.portfolio-list .column .left:hover img { 
+	transform: scale(1.2); 
+} 
+
+div.portfolio-list .column .right{
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	justify-content: center;
+	align-items: center;
+	padding:20px;
+	color:white;
+	font-size:18px;
+	font-weight: bold;
 }
 
 .portfolio-img{
@@ -709,7 +817,6 @@ header{
 .portfolioFilter ul li a:hover{
 	border-color:#cfcfcf;
 	color:#000;
-	
 	transition-duration: 0.2s;
 	-webkit-transition-duration: 0.2s;
 }
@@ -717,6 +824,24 @@ header{
 .portfolioFilter ul li a.current{
 	border:solid 1px #fff;
 	color:#fff;
+	font-weight: 700;
+}
+
+div.project-name-container{
+	display: flex;
+	justify-content: center;
+	height: 50px;
+	margin-bottom: 30px;
+}
+
+a#veeh{
+	padding: 13px 30px;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+	/* text-transform: uppercase; */
+	text-decoration: none;
+	border: solid 1px #fff;
 	font-weight: 700;
 }
 ul.portfolioContainer{
@@ -1034,6 +1159,10 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 	z-index:2;
 }
 
+div.heading a{
+	color:#372d38
+}
+
 #message {
 	margin-bottom:40px;
 }
@@ -1237,12 +1366,24 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 	#skill-carousel-container, .tc-btn-container{
 		display: none !important;
 	}
+	h2#skills-header{
+		color:#372d38 !important;
+	}
+	.skillset{
+		background-color: #f8f8f8;
+	}
+
+	.skillset .container{
+		min-height: 100%;
+		padding-bottom: 60px;
+	}
 	.skillset-mobile-container{
 		/* border: 1px solid; */
     height: 100%;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+		flex-wrap: wrap;
+		background-color: #f8f8f8;
     /* justify-content: space-evenly; */
 	}
 	.skill{
@@ -1367,16 +1508,46 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 	}
 
 	.expertiesico{
-		display: none;
-	}
-	.expertiesico-mobile{
-		display: block;
+		margin-bottom: 0;
 	}
 
-	.expertiesico-mobile-icon{
+	div.row.media.educations{
+		flex-direction: column;
+		height: 100%;
+	}
+
+	div.row.media.educations .name{
+
+	}
+
+	div.row.media.educations .left,div.row.media.educations .right{
+		width: 100%;
+		justify-content: flex-start;
+		margin:15px;
+		text-align: left;
+	}
+
+	div.portfolio-list .column{
+		flex-direction: column;
+	}
+
+	div.portfolio-list .column .left, div.portfolio-list .column .right{
+		width: 100%;
+	}
+	div.about-company{
+
+	}
+	/* .expertiesico{
+		display: none;
+	} */
+	/* .expertiesico-mobile{
+		display: block;
+	} */
+
+	/* .expertiesico-mobile-icon{
 		display: inline-block;
 		margin-right: 10px;
-	}
+	} */
 	
 }
 
@@ -1393,6 +1564,10 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 	}
 	.workDetails .rightArea{
 		border-left:none;
+	}
+	.heading{
+		padding-bottom: 0;
+		min-height: 100%;
 	}
 	.arrowpart{
 		float:none;
@@ -1450,7 +1625,7 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 		top: 200px !important;
 	}
 	.heading {
-		padding-bottom:40px;
+		/* padding-bottom:40px; */
 	}
 	.upbox{
 		transform: translate(0px, -70px);
@@ -1476,12 +1651,12 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 	.aboutus h3 {
 		padding-top:20px;
 	}
-	.expertiesico {
+	/* .expertiesico {
 		padding:0;
 		border:none;
 		text-align:center;
 		margin-bottom:30px;
-	}
+	} */
 	.expertiesdesc {
 		padding:0;
 		margin-bottom:50px;

@@ -18,7 +18,7 @@ jQuery(function($) {
 
       $('#banner').superslides({
         animation: 'fade',
-        play: 5000
+        play: 0
       });
     });
   
