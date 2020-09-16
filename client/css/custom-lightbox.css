@@ -53,8 +53,8 @@ div#caption{
   background-color: black;
   margin: auto;
   padding: 0;
-  width: 65%;
-  max-width: 760px;
+  width: 100%;
+  max-width: 940px;
 }
 
 /* The Close Button */
