@@ -557,9 +557,10 @@ h2#skills-header{
 ------------------------------------------------------*/
 
 .myexperties {
-	background:#fff;
-	border-bottom: #ededed;
+	background:#f8f8f8;
+	/* border-bottom: #ededed; */
 }
+
 .myexperties .container{
 	padding-top:60px ;
 	/* margin-bottom:-20px; */
@@ -673,6 +674,9 @@ div.row.media.educations h5{
 	display: none;
 }
 
+/* #experience .container {
+	border-bottom:1px solid #efefef;
+} */
 
 /*----------------------------------------------------
 	 8. Protfolio Style
