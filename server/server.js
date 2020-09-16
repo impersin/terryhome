@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const sendmail = require('sendmail')();
 const isDeveloping = process.env.NODE_ENV !== 'production';
-const sslRedirect = require('heroku-ssl-redirect');
+const sslRedirect = require('heroku-ssl-redirect').default;
 const app = express();
 
 app.use(sslRedirect(['development', 'production']));
