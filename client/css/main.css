@@ -79,7 +79,7 @@ img {
 }
 
 .container{
-	border-bottom: 1px solid #efefef;
+	/* border-bottom: 1px solid #efefef; */
 }
 
 p{
@@ -558,6 +558,7 @@ h2#skills-header{
 
 .myexperties {
 	background:#fff;
+	border-bottom: #ededed;
 }
 .myexperties .container{
 	padding-top:60px ;
@@ -750,6 +751,7 @@ div.portfolio-list .column .left{
 
 div.portfolio-list .column .left img { 
 	width: 70%; 
+	min-width: 400px;
 	transition: 0.5s all ease-in-out; 
 } 
  
@@ -1371,6 +1373,11 @@ div.heading a{
 	}
 	.skillset{
 		background-color: #f8f8f8;
+	}
+
+	.skill-title {
+    color: #372d38 !important;
+    font-weight: 400 !important;
 	}
 
 	.skillset .container{
