@@ -143,7 +143,8 @@ $(window).load(function(){
 	$('button.navbar-toggle').click(function(){
 		$(this).toggleClass('active');
 		$('.navbar-collapse').slideToggle();										 
-	});					
+	});
+	$("html, body").animate({ scrollTop: 0 });	
 });
 // for banner height js
 var windowWidth = $(window).width();
