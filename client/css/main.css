@@ -1487,6 +1487,15 @@ div.heading a{
 		float:right;
 	}
 
+	.skill-title{
+		font-weight: 12px;	
+	}
+
+	p#about-me{
+		text-align: left;
+		font-size: 12px;
+	}
+
 	.aboutus img {
     padding: 7px;
     display: block;
@@ -1507,8 +1516,18 @@ div.heading a{
     margin-bottom: 15px;
 	}
 
+	#exp-date{
+		display: none;
+	}
+
 	.expertiesico{
 		margin-bottom: 0;
+	}
+
+	ul#responsibility{
+		/* list-style-type: none; */
+		text-align: left;
+		font-size: 12px;
 	}
 
 	div.row.media.educations{
