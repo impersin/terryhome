@@ -689,7 +689,7 @@ div.row.media.educations h5{
 	background-position: center;
 	background-repeat: no-repeat;
 	overflow:hidden;
-	padding: 60px 10px;
+	padding: 60px 15px;
 }
 .portfolio-container{
 	display: flex;
@@ -739,6 +739,11 @@ div.portfolio-list{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	margin-bottom: 60px;
+}
+
+div.portfolio-list.two{
+	margin-bottom: 0px;
 }
 
 div.portfolio-list .column{
@@ -749,6 +754,7 @@ div.portfolio-list .column{
 div.portfolio-list .column .left{
 	display: flex;
 	width: 50%;
+	height: 100%;
 	justify-content: center;
 	overflow: hidden;
 }
@@ -756,10 +762,21 @@ div.portfolio-list .column .left{
 div.portfolio-list .column .left img { 
 	width: 70%; 
 	min-width: 400px;
+	max-height: 250px;
 	transition: 0.5s all ease-in-out; 
 } 
  
 div.portfolio-list .column .left:hover img { 
+	transform: scale(1.2); 
+} 
+
+video { 
+	/* width: 70%; 
+	min-width: 400px; */
+	transition: 0.5s all ease-in-out; 
+} 
+ 
+video:hover { 
 	transform: scale(1.2); 
 } 
 
@@ -777,6 +794,11 @@ div.portfolio-list .column .right{
 
 .portfolio-img{
 
+}
+
+video:focus {
+	object-fit: contain;
+	outline: none;
 }
 
 .portfolioFilter ul{
@@ -850,6 +872,18 @@ a#veeh{
 	border: solid 1px #fff;
 	font-weight: 700;
 }
+
+span#audience-detector{
+	padding: 13px 30px;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+	/* text-transform: uppercase; */
+	text-decoration: none;
+	border: solid 1px #fff;
+	font-weight: 700;
+}
+
 ul.portfolioContainer{
 	display:block;
 	padding:0px;
@@ -1557,6 +1591,11 @@ div.heading a{
 		text-align: left;
 	}
 
+	.protfolio{
+		padding-left:15px;
+		padding-right: 15px;
+	}
+
 	div.portfolio-list .column{
 		flex-direction: column;
 	}
@@ -1564,9 +1603,23 @@ div.heading a{
 	div.portfolio-list .column .left, div.portfolio-list .column .right{
 		width: 100%;
 	}
+
+	div.portfolio-list .column .left img { 
+		transition: none;
+	} 
+	 
+	div.portfolio-list .column .left:hover img { 
+		transform: scale(1); 
+	} 
+	
+	video{
+		/* object-fit: contain; */
+	}
+
 	div.about-company{
 
 	}
+	
 	/* .expertiesico{
 		display: none;
 	} */

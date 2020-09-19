@@ -27,6 +27,9 @@
 <!-- font icon css style-->
 <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+  <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+<script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 </head>
 <body onLoad="load()" onUnload="GUnload()">
 <!-- Preloader -->
@@ -422,25 +425,12 @@
   
   <!--portfolio start-->
 	<section class="protfolio" id="ourwork">
-    <!-- <div class="container"> -->
         <div class="heading portfolio-heading">
             <h2>Portfolio</h2>
-            <!-- <h3>What I have done in my academic career</h3>             -->
         </div>
-    <!-- </div> -->
-    <div class="row">
-      <!-- <div class="portfolioFilter"> -->
-        <!-- <ul> -->
-          <!-- <li><a href="https://www.veeh.co">Veeh</a></li> -->
-          <!-- <li><a href="www.veeh.co" data-filter="*" class="current">Veeh</a></li> -->
-          <!-- <li><a href="#" data-filter=".veeh">VEEH</a></li> -->
-        <!-- </ul> -->
-      <!-- </div> -->
+    
       <div class="row">
-        <div class="portfolio-list">
-          <!-- <div class="project-name-container">
-            <a id="veeh" href="https://www.veeh.co" target="_blank">Veeh</a>
-          </div> -->
+        <div class="portfolio-list one">
           <div class="column">
             <div class="left">
               <img src="./images/portfolios/veeh/test_port.png" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
@@ -452,18 +442,30 @@
                <div class="about-company">Veeh is an Alchemist Accelerator-backed B2B marketplace with $40,000+ monthly transactions which helps advertisers to hyper-target audiences through local businesses.</div> 
             </div>
           </div>
-          <!-- <div class="column">
-            <img src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
-          </div> -->
         </div>
-        <!-- <div class="column">
-          <img src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+        <div class="portfolio-list two">
+          <div class="column">
+            <div class="left">
+              <video width="440" height="240" controls>
+                <source src="https://taegyudocs.s3-us-west-1.amazonaws.com/myhome/Tensorflow_lite_project.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="right">
+              <div class="project-name-container">
+                <span id="audience-detector" href="javascript:;"> Audience Detector</span>
+              </div>
+               <div class="about-company">
+                 Launched machine learning based camera sensor device for audience demographic analytics.<br/>
+                 (Raspberry Pi 4 + Tensorflow Lite + TPU Accelerator)
+              </div> 
+            </div>
+          </div>
         </div>
-        <div class="column">
-          <img src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
-        </div> -->
       </div>
-    </div>
+
+      <!-- <div class="row">
+      </div> -->
+
     <div id="myModal" class="modal">
       <span class="close cursor" onclick="closeModal()">&times;</span>
       <div class="modal-content">
@@ -490,17 +492,6 @@
           <img src="./images/portfolios/veeh/test_port_5.png" style="width:100%">
         </div>
         
-    
-        <!-- <div class="mySlides">
-          <div class="numbertext">3 / 4</div>
-          <img src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%">
-        </div>
-        
-        <div class="mySlides">
-          <div class="numbertext">4 / 4</div>
-          <img src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%">
-        </div> -->
-        
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     
@@ -524,13 +515,8 @@
           <div class="column bullet-image">
             <img class="demo cursor" src="./images/portfolios/veeh/test_port_4.png" style="width:100%" onclick="currentSlide(5)" alt="Inquiry Review & Submit">
           </div>
-          <!-- <div class="column">
-            <img class="demo cursor" src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
-          </div>
-          <div class="column">
-            <img class="demo cursor" src="https://s3-us-west-1.amazonaws.com/veehtest/veeh-static/Home_Main_Lg.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
-          </div> -->
         </div>
+
       </div>
     </div>
   </section>
@@ -616,7 +602,7 @@
 <link type="text/css" rel="stylesheet" href="css/lightbox.min.css">
 <script type="text/javascript" src="js/jquery.ui.widget.min.js"></script> 
 <script type="text/javascript" src="js/jquery.ui.rlightbox.js"></script> 
-
+<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
 <!--contact form js--> 
 <script type="text/javascript" src="js/jquery.contact.js"></script> 
 <!-- <script
