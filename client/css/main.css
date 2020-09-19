@@ -777,11 +777,11 @@ div.portfolio-list .column .left:hover img {
 video { 
 	/* width: 70%; 
 	min-width: 400px; */
-	transition: 0.5s all ease-in-out; 
+	/* transition: 0.5s all ease-in-out;  */
 } 
  
 video:hover { 
-	transform: scale(1.2); 
+	transform: scale(1); 
 } 
 
 div.portfolio-list .column .right{
