@@ -746,6 +746,10 @@ div.portfolio-list.two{
 	margin-bottom: 0px;
 }
 
+div.portfolio-list.two .column{
+	flex-direction: row-reverse;
+}
+
 div.portfolio-list .column{
 	display: flex;
 	justify-content: center;
@@ -1597,6 +1601,10 @@ div.heading a{
 	}
 
 	div.portfolio-list .column{
+		flex-direction: column;
+	}
+
+	div.portfolio-list.two .column{
 		flex-direction: column;
 	}
 
