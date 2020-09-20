@@ -764,9 +764,10 @@ div.portfolio-list .column .left{
 }
 
 div.portfolio-list .column .left img { 
-	width: 70%; 
-	min-width: 400px;
+	/* width: 70%;  */
+	/* min-width: 400px; */
 	max-height: 250px;
+	object-fit: contain;
 	transition: 0.5s all ease-in-out; 
 } 
  
@@ -775,6 +776,7 @@ div.portfolio-list .column .left:hover img {
 } 
 
 video { 
+	height:250px;
 	/* width: 70%; 
 	min-width: 400px; */
 	/* transition: 0.5s all ease-in-out;  */
