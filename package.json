@@ -21,6 +21,7 @@
   "homepage": "https://github.com/impersin/terryhome#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "compression": "^1.7.4",
     "express": "^4.16.3",
     "heroku-ssl-redirect": "^0.1.1",
     "sendmail": "^1.4.1"
