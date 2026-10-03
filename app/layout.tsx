@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './bootstrap.css';
-import './globals.css';
+import './globals.scss';
 import './skill-carousel.css';
 import './custom-lightbox.css';
 

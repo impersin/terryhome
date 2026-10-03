@@ -1,7 +1,8 @@
 'use client';
 
 import { gsap } from 'gsap';
-import { FormEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Section } from './section';
 
 const skillItems = [
   ['React · Redux', 'https://terryhome.s3.us-west-1.amazonaws.com/skills/react_redux.png'],
@@ -29,8 +30,6 @@ const sections = [
   ['Contact', 'contact'],
 ] as const;
 
-type ContactStatus = { type: 'error' | 'success'; message: string } | null;
-
 export function PortfolioPage() {
   const menuRef = useRef<HTMLDivElement>(null);
   const menuPanelRef = useRef<HTMLElement>(null);
@@ -40,8 +39,6 @@ export function PortfolioPage() {
   const [menuRendered, setMenuRendered] = useState(false);
   const [skillIndex, setSkillIndex] = useState(0);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
-  const [submitting, setSubmitting] = useState(false);
-  const [contactStatus, setContactStatus] = useState<ContactStatus>(null);
 
   const selectSkill = (nextIndex: number) => {
     setSkillIndex((nextIndex + skillItems.length) % skillItems.length);
@@ -119,50 +116,6 @@ export function PortfolioPage() {
     menuTimelineRef.current?.kill();
   }, []);
 
-  const submitContact = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setSubmitting(true);
-    setContactStatus(null);
-
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.get('name'),
-          email: formData.get('email'),
-          comments: formData.get('comments'),
-        }),
-      });
-      const payload = (await response.json().catch(() => null)) as
-        | { error?: string; message?: string }
-        | null;
-
-      if (!response.ok) {
-        setContactStatus({
-          type: 'error',
-          message: payload?.error ?? 'Your message could not be sent. Please try again.',
-        });
-        return;
-      }
-
-      form.reset();
-      setContactStatus({
-        type: 'success',
-        message: payload?.message ?? 'Thanks! Your message has been sent.',
-      });
-    } catch {
-      setContactStatus({
-        type: 'error',
-        message: 'Your message could not be sent. Check your connection and try again.',
-      });
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
   return (
     <div className="wrapper noGap" id="wrapper">
       <header>
@@ -233,9 +186,7 @@ export function PortfolioPage() {
       </header>
 
       <main>
-        <section className="aboutus" id="aboutus">
-          <div className="container">
-            <div className="heading"><h2>About me</h2></div>
+        <Section className="aboutus" id="aboutus" title="About me">
             <div className="row">
               <div id="profile-img" className="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right media">
                 <img src="https://terryhome.s3.us-west-1.amazonaws.com/aboutme_img.jpg" alt="Taegyu Leem" />
@@ -250,12 +201,9 @@ export function PortfolioPage() {
                 <a href="/resume/Resume_Fall2020.pdf" download className="btn btn-primary btn-lg">Resume</a>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
 
-        <section className="skillset" id="skillset">
-          <div className="container">
-            <div className="heading"><h2 id="skills-header">Skills &amp; Expertise</h2></div>
+        <Section className="skillset" headingId="skills-header" id="skillset" title="Skills">
             <div id="carousel">
               <div
                 id="skill-carousel-container"
@@ -283,12 +231,9 @@ export function PortfolioPage() {
                 <button className="tc-next" type="button" onClick={() => selectSkill(skillIndex + 1)}>Next</button>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
 
-        <section className="myexperties" id="experience">
-          <div className="container">
-            <div className="heading"><h2>Experience</h2></div>
+        <Section className="myexperties" id="experience" title="Experience">
             <div className="row media">
               <div className="col-xs-12 col-sm-3 col-md-3 col-lg-3"><div id="exp-date" className="expertiesico">Oct, 2017<br />Present</div></div>
               <div className="expertiesdesc col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -301,21 +246,16 @@ export function PortfolioPage() {
                 </ul>
               </div>
             </div>
-          </div>
-        </section>
+        </Section>
 
-        <section className="educationdiploma" id="education">
-          <div className="container">
-            <div className="heading"><h2>Education</h2></div>
+        <Section className="educationdiploma" id="education" title="Education">
             <div className="row media educations">
               <div className="left"><div className="expertiesico"><img src="https://terryhome.s3.us-west-1.amazonaws.com/logos/hackreactor.png" alt="Hack Reactor" /></div><div className="name"><h4>Hack Reactor</h4><h5>Full Stack Web Development</h5></div></div>
               <div className="right"><div className="expertiesico"><img src="https://terryhome.s3.us-west-1.amazonaws.com/logos/daelim.png" alt="Daelim University" /></div><div className="name"><h4>Daelim University</h4><h5>BS Mechanical Engineering</h5></div></div>
             </div>
-          </div>
-        </section>
+        </Section>
 
-        <section className="protfolio" id="ourwork">
-          <div className="heading portfolio-heading"><h2>Portfolio</h2></div>
+        <Section className="protfolio" id="ourwork" title="Portfolio">
           <div className="row">
             <div className="portfolio-list one">
               <div className="column">
@@ -325,7 +265,7 @@ export function PortfolioPage() {
                   </button>
                 </div>
                 <div className="right">
-                  <div className="project-name-container"><a href="https://www.veeh.co" target="_blank" rel="noreferrer">Veeh</a></div>
+                  <div className="project-name-container">Veeh</div>
                   <div className="about-company">Veeh is an Alchemist Accelerator-backed B2B marketplace with $40,000+ monthly transactions that helps advertisers hyper-target audiences through local businesses.</div>
                 </div>
               </div>
@@ -340,23 +280,20 @@ export function PortfolioPage() {
               </div>
             </div>
           </div>
-        </section>
+        </Section>
 
-        <section className="contactDetails" id="contact">
-          <div className="container">
-            <div className="heading"><h2>Get In Touch</h2><h3><a href="mailto:taegyuleem@gmail.com">taegyuleem@gmail.com</a></h3></div>
-            <form className="conForm contact-form" onSubmit={submitContact}>
-              <label htmlFor="name">Name</label>
-              <input id="name" name="name" required maxLength={100} />
-              <label htmlFor="email">Email</label>
-              <input id="email" name="email" type="email" required />
-              <label htmlFor="comments">Message</label>
-              <textarea id="comments" name="comments" required maxLength={5000} rows={6} />
-              {contactStatus && <p role="status" className={contactStatus.type === 'error' ? 'error_message' : 'success_message'}>{contactStatus.message}</p>}
-              <button className="submitBnt" type="submit" disabled={submitting}>{submitting ? 'Sending…' : 'Send message'}</button>
-            </form>
+        <Section className="contactDetails" id="contact" title="Get In Touch">
+          <div className="contact-cta">
+            <p>Have a project or idea you&apos;d like to discuss?</p>
+            <a
+              className="contact-email"
+              href="mailto:taegyuleem@gmail.com?subject=Portfolio%20inquiry"
+            >
+              Send an email <span aria-hidden="true">→</span>
+            </a>
+            <p className="contact-note">Opens your preferred email app.</p>
           </div>
-        </section>
+        </Section>
       </main>
 
       <footer className="footer" id="footer">
