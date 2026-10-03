@@ -1,6 +1,7 @@
 'use client';
 
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { FormEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 const skillItems = [
   ['React · Redux', 'https://terryhome.s3.us-west-1.amazonaws.com/skills/react_redux.png'],
@@ -32,8 +33,11 @@ type ContactStatus = { type: 'error' | 'success'; message: string } | null;
 
 export function PortfolioPage() {
   const menuRef = useRef<HTMLDivElement>(null);
+  const menuPanelRef = useRef<HTMLElement>(null);
+  const menuLinksRef = useRef<(HTMLLIElement | null)[]>([]);
+  const menuTimelineRef = useRef<gsap.core.Timeline | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [navigationStuck, setNavigationStuck] = useState(false);
+  const [menuRendered, setMenuRendered] = useState(false);
   const [skillIndex, setSkillIndex] = useState(0);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -43,26 +47,77 @@ export function PortfolioPage() {
     setSkillIndex((nextIndex + skillItems.length) % skillItems.length);
   };
 
-  useEffect(() => {
-    const updateNavigationPosition = () => setNavigationStuck(window.scrollY > 34);
+  const openMenu = () => {
+    menuTimelineRef.current?.kill();
+    menuTimelineRef.current = null;
+    setMenuRendered(true);
+    setMenuOpen(true);
+  };
 
-    updateNavigationPosition();
-    window.addEventListener('scroll', updateNavigationPosition, { passive: true });
-    return () => window.removeEventListener('scroll', updateNavigationPosition);
-  }, []);
+  const closeMenu = () => setMenuOpen(false);
 
   useEffect(() => {
     if (!menuOpen) return;
 
     const closeOutsideMenu = (event: PointerEvent) => {
       if (!menuRef.current?.contains(event.target as Node)) {
-        setMenuOpen(false);
+        closeMenu();
       }
     };
 
     document.addEventListener('pointerdown', closeOutsideMenu);
     return () => document.removeEventListener('pointerdown', closeOutsideMenu);
   }, [menuOpen]);
+
+  useLayoutEffect(() => {
+    if (!menuRendered || !menuPanelRef.current) return;
+
+    if (menuOpen) {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const menuLinks = menuLinksRef.current.filter(
+        (link): link is HTMLLIElement => link !== null,
+      );
+      const timeline = gsap.timeline({ paused: true });
+
+      timeline.fromTo(
+        menuPanelRef.current,
+        { autoAlpha: 0, y: -12 },
+        { autoAlpha: 1, duration: prefersReducedMotion ? 0 : 0.22, ease: 'power3.out', y: 0 },
+      );
+      timeline.fromTo(
+        menuLinks,
+        { autoAlpha: 0, y: -8 },
+        {
+          autoAlpha: 1,
+          duration: prefersReducedMotion ? 0 : 0.2,
+          ease: 'power3.out',
+          stagger: prefersReducedMotion ? 0 : 0.025,
+          y: 0,
+        },
+        prefersReducedMotion ? 0 : 0.04,
+      );
+
+      menuTimelineRef.current = timeline;
+      timeline.play(0);
+      return;
+    }
+
+    const timeline = menuTimelineRef.current;
+    if (!timeline) {
+      setMenuRendered(false);
+      return;
+    }
+
+    timeline.eventCallback('onReverseComplete', () => {
+      setMenuRendered(false);
+      menuTimelineRef.current = null;
+    });
+    timeline.reverse();
+  }, [menuOpen, menuRendered]);
+
+  useEffect(() => () => {
+    menuTimelineRef.current?.kill();
+  }, []);
 
   const submitContact = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -115,43 +170,48 @@ export function PortfolioPage() {
           <button
             className="nav-icon"
             type="button"
-            aria-label="Open navigation"
+            aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
             aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(true)}
+            onClick={() => (menuOpen ? closeMenu() : openMenu())}
           >
             <svg aria-hidden="true" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="9" />
               <path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8 4.8-2.2Z" />
             </svg>
           </button>
-          <nav className={`navbar-wrapper stuckMenu ${navigationStuck ? 'isStuck' : ''} ${menuOpen ? 'is-open' : 'default-menu'}`}>
-            <div className="container">
-              <div className="navwrapper">
-                <div className="navbar navbar-inverse navbar-static-top">
-                  <div className="container">
-                    <div className="navArea">
-                      <button
-                        className="closeMenu"
-                        type="button"
-                        aria-label="Close navigation"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        ×
-                      </button>
-                      <ul className="nav navbar-nav">
-                        <li className="menuItem"><a href="#wrapper" onClick={() => setMenuOpen(false)}>Home</a></li>
-                        {sections.map(([label, id]) => (
-                          <li className="menuItem" key={id}>
-                            <a href={`#${id}`} onClick={() => setMenuOpen(false)}>{label}</a>
-                          </li>
-                        ))}
-                      </ul>
+          {menuRendered && (
+            <nav
+              className={`navbar-wrapper ${menuOpen ? 'is-open' : 'is-closing'}`}
+              ref={menuPanelRef}
+            >
+              <div className="container">
+                <div className="navwrapper">
+                  <div className="navbar navbar-inverse navbar-static-top">
+                    <div className="container">
+                      <div className="navArea">
+                        <button
+                          className="closeMenu"
+                          type="button"
+                          aria-label="Close navigation"
+                          onClick={closeMenu}
+                        >
+                          ×
+                        </button>
+                        <ul className="nav navbar-nav">
+                          <li className="menuItem"><a href="#wrapper" onClick={closeMenu}>Home</a></li>
+                          {sections.map(([label, id], index) => (
+                            <li className="menuItem" key={id} ref={(element) => { menuLinksRef.current[index] = element; }}>
+                              <a href={`#${id}`} onClick={closeMenu}>{label}</a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </nav>
+            </nav>
+          )}
         </div>
         <section className="banner row" id="banner">
           <div className="bannerText">

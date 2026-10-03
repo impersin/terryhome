@@ -1762,10 +1762,9 @@ a {
 
 .menu {
 	background: rgba(247, 247, 245, 0.94);
-	border-bottom: 1px solid var(--line);
 	margin: 0;
 	padding: 0 32px;
-	position: fixed;
+	position: absolute;
 	z-index: 1001;
 }
 
@@ -1786,17 +1785,13 @@ a {
 	stroke: var(--ink);
 }
 
-.navbar-wrapper.stuckMenu,
-.navbar-wrapper.isStuck {
+.navbar-wrapper.is-open {
 	background: var(--paper);
 	border-bottom: 1px solid var(--line);
 	height: 56px;
 	left: 0;
-	position: fixed;
+	position: relative;
 	top: 0;
-}
-
-.navbar-wrapper.is-open {
 	margin-top: 0;
 }
 
@@ -1816,8 +1811,7 @@ a {
 	color: var(--accent);
 }
 
-.navbar.navbar-inverse.navbar-static-top button.closeMenu,
-.isStuck .navbar.navbar-inverse.navbar-static-top button.closeMenu {
+.navbar.navbar-inverse.navbar-static-top button.closeMenu {
 	border-color: var(--ink);
 	color: var(--ink);
 	top: 12px;
@@ -2316,25 +2310,17 @@ button {
 	opacity: 1;
 }
 
-.navbar-wrapper.default-menu .closeMenu {
-	display: none;
-}
-
 .navbar-wrapper.is-open .closeMenu {
 	display: block;
 }
 
-.menu-open .nav-icon {
-	visibility: hidden;
+.navbar-wrapper.is-closing .closeMenu {
+	display: block;
 }
 
-.navbar-wrapper.isStuck {
-	left: 0;
-	margin-top: 0;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 1000;
+.menu-open .nav-icon {
+	visibility: visible;
+	z-index: 1002;
 }
 
 .navbar.navbar-inverse.navbar-static-top button.closeMenu {
@@ -2350,11 +2336,6 @@ button {
 	right: 0;
 	top: 20px;
 	width: 32px;
-}
-
-.isStuck .navbar.navbar-inverse.navbar-static-top button.closeMenu {
-	border-color: #000;
-	color: #000;
 }
 
 .slides-container {
