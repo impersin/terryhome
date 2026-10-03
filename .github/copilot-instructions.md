@@ -3,23 +3,22 @@
 ## Commands
 
 - Install dependencies: `npm install`
-- Run the production-style server: `npm start`
-- Run the server with automatic restarts: `npm run dev`
-- The server loads the root `.env` file through `dotenv` and listens on `PORT` when set, otherwise port `3000`. Shell-provided environment values take precedence over `.env`.
-- There is currently no build command, lint command, or test suite. `npm test` is the npm scaffold placeholder and exits with an error, so there is no single-test command.
+- Run the development server: `npm run dev`
+- Create a production build: `npm run build`
+- Serve the production build: `npm start`
+- Run linting: `npm run lint`
+- There is no automated test suite or single-test command.
 
 ## Architecture
 
-- This is a single-process Express application in `server/server.js` that serves everything under `client/` as static files and explicitly returns `client/index.html` for `/`.
-- The site is a static, single-page portfolio. `client/index.html` owns the page structure, content, external resources, and the ordered `<script>` includes.
-- Browser behavior is implemented as legacy global jQuery scripts in `client/js/`. `headerController.js` initializes navigation and slides; `custom.js` contains page interaction, animation, portfolio filtering, and lightbox initialization; `custom-lightbox.js` implements the portfolio modal.
-- CSS and browser dependencies are committed assets under `client/css/` and `client/js/`; the page also loads some third-party resources from CDNs and portfolio media from S3.
-- The only JSON API route is `POST /sendemail`. It currently delays and responds with `200`; its prior `sendmail` implementation is commented out. The matching contact form and map integrations in `index.html` are currently commented out, so changes to that route should be coordinated with re-enabling the client form.
+- The site uses the Next.js App Router. `app/layout.tsx` owns global metadata and styles, `app/page.tsx` renders the portfolio, and `components/portfolio-page.tsx` contains its client-side interactions.
+- `app/api/contact/route.ts` validates contact submissions and sends email through Resend. It requires `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, and `CONTACT_TO_EMAIL`; use `.env.example` as the non-secret configuration contract.
+- Static assets are served from `public/`. The page retains S3-hosted portfolio media.
+- Legacy Express and jQuery sources remain in `server/` and `client/` solely as a migration rollback reference; do not add new behavior to them.
 
 ## Repository Conventions
 
-- Keep client asset paths relative to `client/`: Express exposes that directory at the web root, so `js/...`, `css/...`, and `images/...` URLs in `index.html` must not include `client/`.
-- Preserve script load order in `client/index.html`. Feature scripts rely on globally loaded jQuery and plugins rather than module imports or a bundler.
-- Page navigation and section behavior are coupled through IDs in `index.html` and `headerController.js`'s `stickUp` `parts` map. Add or rename sections in both places.
-- Follow `.prettierrc` for maintained JavaScript: two-space indentation, single quotes, semicolons, and ES5-compatible trailing commas. The ESLint configuration permits browser and Node globals and uses the same core formatting rules, but ESLint is not installed or wired to an npm script.
-- Avoid changing committed third-party/minified vendor files in `client/js/` and `client/css/` unless the dependency itself is intentionally being updated.
+- Keep public asset URLs rooted at `/` (for example, `/resume/Resume_Fall2020.pdf`).
+- The main page is intentionally a client component because navigation, the skill carousel, gallery modal, and contact form use React state. Keep the Resend API and its environment variables server-only.
+- Page navigation relies on section IDs in `components/portfolio-page.tsx`; retain those IDs when changing the navigation.
+- Preserve the legacy CSS-derived class names while maintaining visual compatibility. Do not add new behavior to the minified assets in `client/`; they are rollback-only.

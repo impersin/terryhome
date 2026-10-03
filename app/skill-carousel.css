@@ -1,0 +1,91 @@
+#carousel {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  -webkit-perspective: 80px;
+  perspective: 800px;
+  position: relative;
+  width: 100%;
+}
+
+#skill-carousel-container {
+  display: block;
+  height: 200px;
+  margin: 0 auto;
+  transform: rotateY(0deg);
+  -webkit-transform-origin: center bottom 0;
+  transform-origin: center bottom 0;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  width: 200px;
+}
+
+item {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  transform: translateZ(400px);
+  position: absolute;
+  opacity: 0.1;
+}
+
+item img { 
+  width: 100%;
+  background-color: #1b1a1b;
+}
+
+.skill-title{
+  width: 100%;
+  color:#fff;
+  /* border:1px solid; */
+  text-align: center;
+  text-transform: capitalize;
+  font-weight:700;
+}
+
+.skill-title:hover{
+  cursor: pointer;
+  /* border-bottom: 1px solid #444; */
+}
+
+.tc-btn-container {
+  display: block;
+  float: left;
+  height: 35px;
+  margin-top: -12.5px;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+
+.tc-next {
+  background-color: #1b1a1b;
+  color: #fff;
+  display: block;
+  float: right;
+  font-size: 12px;
+  padding: 10px;
+  width: auto;
+  cursor: pointer;
+}
+
+.tc-prev {
+  background-color: #1b1a1b;
+  color: #fff;
+  display: block;
+  float: left;
+  font-size: 12px;
+  padding: 10px;
+  width: auto;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px){
+  .skill-title{
+    color: #372d38 !important;
+    font-weight: 400;
+  }
+}
