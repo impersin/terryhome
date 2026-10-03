@@ -5,7 +5,7 @@
 - Install dependencies: `npm install`
 - Run the production-style server: `npm start`
 - Run the server with automatic restarts: `npm run dev`
-- The server listens on `PORT` when set, otherwise port `3001`.
+- The server loads the root `.env` file through `dotenv` and listens on `PORT` when set, otherwise port `3000`. Shell-provided environment values take precedence over `.env`.
 - There is currently no build command, lint command, or test suite. `npm test` is the npm scaffold placeholder and exits with an error, so there is no single-test command.
 
 ## Architecture
