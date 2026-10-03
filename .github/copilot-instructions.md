@@ -21,4 +21,5 @@
 - Keep public asset URLs rooted at `/` (for example, `/resume/Resume_Fall2020.pdf`).
 - The main page is intentionally a client component because navigation, the skill carousel, gallery modal, and contact form use React state. Keep the Resend API and its environment variables server-only.
 - Page navigation relies on section IDs in `components/portfolio-page.tsx`; retain those IDs when changing the navigation.
+- `app/globals.scss` composes the legacy base styles with the Sass files owned by `PortfolioPage` and `Section`. Preserve the cascade order when moving styles between these files.
 - Preserve the legacy CSS-derived class names while maintaining visual compatibility. Do not add new behavior to the minified assets in `client/`; they are rollback-only.
