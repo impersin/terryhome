@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 
 const skillItems = [
   ['React · Redux', 'https://terryhome.s3.us-west-1.amazonaws.com/skills/react_redux.png'],
@@ -31,7 +31,9 @@ const sections = [
 type ContactStatus = { type: 'error' | 'success'; message: string } | null;
 
 export function PortfolioPage() {
+  const menuRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navigationStuck, setNavigationStuck] = useState(false);
   const [skillIndex, setSkillIndex] = useState(0);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -40,6 +42,27 @@ export function PortfolioPage() {
   const selectSkill = (nextIndex: number) => {
     setSkillIndex((nextIndex + skillItems.length) % skillItems.length);
   };
+
+  useEffect(() => {
+    const updateNavigationPosition = () => setNavigationStuck(window.scrollY > 34);
+
+    updateNavigationPosition();
+    window.addEventListener('scroll', updateNavigationPosition, { passive: true });
+    return () => window.removeEventListener('scroll', updateNavigationPosition);
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeOutsideMenu = (event: PointerEvent) => {
+      if (!menuRef.current?.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', closeOutsideMenu);
+    return () => document.removeEventListener('pointerdown', closeOutsideMenu);
+  }, [menuOpen]);
 
   const submitContact = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -88,7 +111,7 @@ export function PortfolioPage() {
   return (
     <div className="wrapper noGap" id="wrapper">
       <header>
-        <div className="menu">
+        <div className={`menu ${menuOpen ? 'menu-open' : ''}`} ref={menuRef}>
           <button
             className="nav-icon"
             type="button"
@@ -96,34 +119,50 @@ export function PortfolioPage() {
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(true)}
           >
-            ☰
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" />
+              <path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8 4.8-2.2Z" />
+            </svg>
           </button>
-          <nav className={`navbar-wrapper ${menuOpen ? 'is-open' : 'default-menu'}`}>
-            <button
-              className="closeMenu"
-              type="button"
-              aria-label="Close navigation"
-              onClick={() => setMenuOpen(false)}
-            >
-              ×
-            </button>
-            <ul className="nav navbar-nav">
-              <li className="menuItem"><a href="#wrapper" onClick={() => setMenuOpen(false)}>Home</a></li>
-              {sections.map(([label, id]) => (
-                <li className="menuItem" key={id}>
-                  <a href={`#${id}`} onClick={() => setMenuOpen(false)}>{label}</a>
-                </li>
-              ))}
-            </ul>
+          <nav className={`navbar-wrapper stuckMenu ${navigationStuck ? 'isStuck' : ''} ${menuOpen ? 'is-open' : 'default-menu'}`}>
+            <div className="container">
+              <div className="navwrapper">
+                <div className="navbar navbar-inverse navbar-static-top">
+                  <div className="container">
+                    <div className="navArea">
+                      <button
+                        className="closeMenu"
+                        type="button"
+                        aria-label="Close navigation"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        ×
+                      </button>
+                      <ul className="nav navbar-nav">
+                        <li className="menuItem"><a href="#wrapper" onClick={() => setMenuOpen(false)}>Home</a></li>
+                        {sections.map(([label, id]) => (
+                          <li className="menuItem" key={id}>
+                            <a href={`#${id}`} onClick={() => setMenuOpen(false)}>{label}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </nav>
         </div>
         <section className="banner row" id="banner">
           <div className="bannerText">
-            <h1>Taegyu Leem</h1>
-            <h3>Full Stack Developer</h3>
+            <p className="hero-kicker">✦ Frontend engineer / full-stack builder</p>
+            <h1>Hello, I&apos;m <span>Taegyu.</span></h1>
+            <h3>I craft thoughtful web experiences that balance clear systems, useful technology, and human detail.</h3>
+            <a className="hero-cta" href="#aboutus">Learn more about me <span aria-hidden="true">→</span></a>
           </div>
           <div className="slides-container">
             <div className="slide">
+              <div className="patternOverlay" aria-hidden="true" />
               <img
                 src="https://terryhome.s3.us-west-1.amazonaws.com/hero/landing_image_1.png"
                 alt=""
@@ -218,16 +257,28 @@ export function PortfolioPage() {
         <section className="protfolio" id="ourwork">
           <div className="heading portfolio-heading"><h2>Portfolio</h2></div>
           <div className="row">
-            <article className="portfolio-list one">
-              <button className="portfolio-image-button" type="button" onClick={() => setGalleryIndex(0)} aria-label="Open Veeh portfolio gallery">
-                <img src={gallery[0][1]} alt="Veeh landing page" className="hover-shadow cursor" />
-              </button>
-              <div className="right"><div className="project-name-container"><a href="https://www.veeh.co" target="_blank" rel="noreferrer">Veeh</a></div><p className="about-company">Veeh is an Alchemist Accelerator-backed B2B marketplace that helps advertisers hyper-target audiences through local businesses.</p></div>
-            </article>
-            <article className="portfolio-list two">
-              <div className="left"><video controls><source src="https://terryhome.s3.us-west-1.amazonaws.com/Tensorflow_lite_project.mp4" type="video/mp4" /></video></div>
-              <div className="right"><div className="project-name-container">Audience Detector</div><p className="about-company">Launched a machine-learning camera sensor device for audience demographic analytics.</p></div>
-            </article>
+            <div className="portfolio-list one">
+              <div className="column">
+                <div className="left">
+                  <button className="portfolio-image-button" type="button" onClick={() => setGalleryIndex(0)} aria-label="Open Veeh portfolio gallery">
+                    <img src={gallery[0][1]} alt="Veeh landing page" className="hover-shadow cursor" />
+                  </button>
+                </div>
+                <div className="right">
+                  <div className="project-name-container"><a href="https://www.veeh.co" target="_blank" rel="noreferrer">Veeh</a></div>
+                  <div className="about-company">Veeh is an Alchemist Accelerator-backed B2B marketplace with $40,000+ monthly transactions that helps advertisers hyper-target audiences through local businesses.</div>
+                </div>
+              </div>
+            </div>
+            <div className="portfolio-list two">
+              <div className="column">
+                <div className="left"><video controls><source src="https://terryhome.s3.us-west-1.amazonaws.com/Tensorflow_lite_project.mp4" type="video/mp4" /></video></div>
+                <div className="right">
+                  <div className="project-name-container">Audience Detector</div>
+                  <div className="about-company">Launched a machine-learning camera sensor device for audience demographic analytics.</div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
