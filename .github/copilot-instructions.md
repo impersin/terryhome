@@ -8,6 +8,7 @@
 - Serve the production build: `npm start`
 - Run linting: `npm run lint`
 - There is no automated test suite or single-test command.
+- `app.json` configures Heroku Review App previews through the Node.js buildpack.
 
 ## Architecture
 

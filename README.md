@@ -18,3 +18,7 @@ Copy `.env.example` to `.env` and configure:
 - `CONTACT_TO_EMAIL` — the recipient address
 
 The contact form posts to `/api/contact`; email credentials are only read by the server.
+
+## Heroku Review Apps
+
+`app.json` configures preview deployments through Heroku Review Apps. Enable Review Apps for the Heroku pipeline connected to this repository; Heroku's Node.js buildpack runs `npm run build` and the web process uses `npm start`.
