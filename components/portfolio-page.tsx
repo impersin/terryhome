@@ -37,6 +37,7 @@ export function PortfolioPage() {
   const menuPanelRef = useRef<HTMLElement>(null);
   const menuLinksRef = useRef<(HTMLLIElement | null)[]>([]);
   const heroHeadingRef = useRef<HTMLHeadingElement>(null);
+  const heroVisualRef = useRef<HTMLDivElement>(null);
   const [skillIndex, setSkillIndex] = useState(0);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
 
@@ -52,46 +53,54 @@ export function PortfolioPage() {
       (link): link is HTMLLIElement => link !== null,
     );
     const timeline = gsap.timeline();
+    const heroHeading = heroHeadingRef.current;
+    const heroVisual = heroVisualRef.current;
+    const splitText = !prefersReducedMotion && heroHeading && heroVisual
+      ? new SplitText(heroHeading, { type: 'chars' })
+      : null;
+
+    if (splitText && heroVisual) {
+      gsap.set(splitText.chars, { autoAlpha: 0 });
+      gsap.set(heroVisual, { autoAlpha: 0, scale: 1.02, y: 200 });
+    }
 
     timeline.fromTo(
       menuPanelRef.current,
       { autoAlpha: 0, y: -12 },
-      { autoAlpha: 1, duration: prefersReducedMotion ? 0 : 0.5, ease: 'power3.out', y: 0 },
+      { autoAlpha: 1, duration: prefersReducedMotion ? 0 : 0.3, ease: 'power3.out', y: 0 },
     );
     timeline.fromTo(
       menuLinks,
       { autoAlpha: 0, y: -8 },
       {
         autoAlpha: 1,
-        duration: prefersReducedMotion ? 0 : 0.5,
+        duration: prefersReducedMotion ? 0 : 0.3,
         ease: 'power3.out',
         stagger: prefersReducedMotion ? 0 : 0.09,
         y: 0,
       },
       prefersReducedMotion ? 0 : 0.09,
     );
+    if (splitText && heroVisual) {
+      timeline.to(splitText.chars, {
+        autoAlpha: 1,
+        duration: 0.5,
+        ease: 'power1.in',
+        stagger: 0.05,
+      }, '-=0.5');
+
+      timeline.to(heroVisual, {
+        autoAlpha: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+        scale: 1,
+        y: 0,
+      }, '-=0.5');
+    }
 
     return () => {
       timeline.kill();
-    };
-  }, []);
-
-  useLayoutEffect(() => {
-    if (!heroHeadingRef.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const splitText = new SplitText(heroHeadingRef.current, { type: 'chars' });
-    const timeline = gsap.timeline();
-
-    timeline.from(splitText.chars, {
-      autoAlpha: 0,
-      duration: 0.5,
-      ease: 'power1.in',
-      stagger: 0.05,
-    });
-
-    return () => {
-      timeline.kill();
-      splitText.revert();
+      splitText?.revert();
     };
   }, []);
 
@@ -122,12 +131,12 @@ export function PortfolioPage() {
         </div>
         <section className="banner row" id="banner">
           <div className="bannerText">
-            <p className="hero-kicker">✦ Frontend engineer / full-stack builder</p>
+            <p className="hero-kicker">✦ Software Engineer</p>
             <h1 ref={heroHeadingRef}>Hello, I&apos;m <span>Taegyu.</span></h1>
             <h3>I craft thoughtful web experiences that balance clear systems, useful technology, and human detail.</h3>
             <a className="hero-cta" href="#aboutus">Learn more about me <span aria-hidden="true">→</span></a>
           </div>
-          <div className="slides-container">
+          <div className="slides-container" ref={heroVisualRef}>
             <div className="slide">
               <div className="patternOverlay" aria-hidden="true" />
               <img
