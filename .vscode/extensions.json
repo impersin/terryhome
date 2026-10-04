@@ -1,0 +1,19 @@
+{
+  // Extensions are recommended new workspace users
+  "recommendations": [
+    // Show & format on save ESLint issues
+    "dbaeumer.vscode-eslint",
+
+    // Git capabilities built into Visual Studio Code
+    "eamodio.gitlens",
+
+    // Format on save styling inconsistencies
+    "esbenp.prettier-vscode",
+
+    // Jest
+    "Orta.vscode-jest"
+  ],
+
+  // Should not be recommended for users of this workspace
+  "unwantedRecommendations": []
+}
