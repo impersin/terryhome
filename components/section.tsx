@@ -31,7 +31,7 @@ export function Section({
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
-    if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!section) return;
 
     const context = gsap.context(() => {
       const revealTargets = section.querySelectorAll<HTMLElement>(

@@ -38,6 +38,7 @@ export function PortfolioPage() {
   const menuLinksRef = useRef<(HTMLLIElement | null)[]>([]);
   const heroHeadingRef = useRef<HTMLHeadingElement>(null);
   const heroDescriptionRef = useRef<HTMLHeadingElement>(null);
+  const heroKickerRef = useRef<HTMLParagraphElement>(null);
   const heroCtaRef = useRef<HTMLAnchorElement>(null);
   const heroVisualRef = useRef<HTMLDivElement>(null);
   const [skillIndex, setSkillIndex] = useState(0);
@@ -50,24 +51,25 @@ export function PortfolioPage() {
   useLayoutEffect(() => {
     if (!menuPanelRef.current) return;
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const menuLinks = menuLinksRef.current.filter(
       (link): link is HTMLLIElement => link !== null,
     );
     const timeline = gsap.timeline();
     const heroHeading = heroHeadingRef.current;
     const heroDescription = heroDescriptionRef.current;
+    const heroKicker = heroKickerRef.current;
     const heroCta = heroCtaRef.current;
     const heroVisual = heroVisualRef.current;
-    const canAnimateHero = !prefersReducedMotion
-      && heroHeading
+    const canAnimateHero = heroHeading
+      && heroKicker
       && heroDescription
       && heroCta
       && heroVisual;
     const headingSplitText = canAnimateHero ? new SplitText(heroHeading, { type: 'chars' }) : null;
     const descriptionSplitText = canAnimateHero ? new SplitText(heroDescription, { type: 'chars' }) : null;
 
-    if (headingSplitText && descriptionSplitText && heroCta && heroVisual) {
+    if (headingSplitText && descriptionSplitText && heroKicker && heroCta && heroVisual) {
+      gsap.set(heroKicker, { autoAlpha: 0, y: -20 });
       gsap.set([headingSplitText.chars,descriptionSplitText.chars ], { autoAlpha: 0 });
       gsap.set(heroCta, { autoAlpha: 0, y: 16 });
       gsap.set(heroVisual, { autoAlpha: 0, scale: 1.02, y: 200 });
@@ -76,21 +78,21 @@ export function PortfolioPage() {
     timeline.fromTo(
       menuPanelRef.current,
       { autoAlpha: 0, y: -12 },
-      { autoAlpha: 1, duration: prefersReducedMotion ? 0 : 0.3, ease: 'power3.out', y: 0 },
+      { autoAlpha: 1, duration: 0.3, ease: 'power3.out', y: 0 },
     );
     timeline.fromTo(
       menuLinks,
       { autoAlpha: 0, y: -8 },
       {
         autoAlpha: 1,
-        duration: prefersReducedMotion ? 0 : 0.3,
+        duration: 0.3,
         ease: 'power3.out',
-        stagger: prefersReducedMotion ? 0 : 0.09,
+        stagger: 0.09,
         y: 0,
       },
-      prefersReducedMotion ? 0 : 0.09,
+      0.09,
     );
-    if (headingSplitText && descriptionSplitText && heroCta && heroVisual) {
+    if (headingSplitText && descriptionSplitText && heroKicker && heroCta && heroVisual) {
       timeline.to(headingSplitText.chars, {
         autoAlpha: 1,
         duration: 0.5,
@@ -120,6 +122,13 @@ export function PortfolioPage() {
         scale: 1,
         y: 0,
       }, '-=0.5');
+
+      timeline.to(heroKicker, {
+        autoAlpha: 1,
+        duration: 0.5,
+        ease: 'power3.out',
+        y: 0,
+      });
     }
 
     return () => {
@@ -156,7 +165,7 @@ export function PortfolioPage() {
         </div>
         <section className="banner row" id="banner">
           <div className="bannerText">
-            <p className="hero-kicker">✦ Software Engineer</p>
+            <p className="hero-kicker" ref={heroKickerRef}>✦ Software Engineer</p>
             <h1 ref={heroHeadingRef}>Hello, I&apos;m <span>Taegyu.</span></h1>
             <h3 ref={heroDescriptionRef}>I turn complex ideas into simple, intuitive, and meaningful digital experiences.</h3>
             <a className="hero-cta" href="#aboutus" ref={heroCtaRef}>Learn more about me <span aria-hidden="true">→</span></a>

@@ -80,12 +80,27 @@ a {
 	box-sizing: border-box;
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) minmax(340px, 0.85fr);
-	gap: clamp(36px, 7vw, 120px);
+	gap: clamp(36px, 8vw, 120px);
 	height: 100dvh;
 	margin: 0 !important;
 	min-height: 640px;
 	padding: 112px clamp(32px, 8vw, 140px) 56px;
 	width: 100%;
+}
+
+.banner::before,
+.banner::after {
+	content: none;
+}
+
+@media screen and (min-width: 768px) {
+	.banner {
+		grid-template-columns: minmax(340px, 0.85fr) minmax(0, 1fr);
+	}
+
+	.banner .slides-container {
+		order: -1;
+	}
 }
 
 .bannerText {
@@ -94,6 +109,9 @@ a {
 	display: flex;
 	flex-direction: column;
 	left: auto;
+	margin-top: 0;
+	justify-content: center;
+	top: auto;
 	padding: 0;
 	position: relative;
 	text-align: left;
@@ -700,7 +718,6 @@ button {
 	background: var(--surface);
 	border: 1px solid var(--line);
 	margin: 0 auto;
-	max-width: 640px;
 	padding: clamp(2rem, 5vw, 4rem);
 	text-align: center;
 }
@@ -744,7 +761,7 @@ main section.skillset {
 }
 
 .skillset .container {
-	min-height: 600px;
+	min-height: 460px;
 	padding: 60px 0;
 }
 

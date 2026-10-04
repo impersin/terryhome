@@ -1,10 +1,13 @@
 /* Shared section rhythm */
 main section.content-section {
-	padding-block: clamp(3rem, 6vw, 6rem);
+	--section-space: clamp(3rem, 6vw, 6rem);
+	padding-block: var(--section-space);
+	padding-inline: 0;
 }
 
-.section-container {
+main section.content-section > .section-container {
 	margin-inline: auto;
+	padding-block: 0;
 }
 
 .section-heading {
@@ -36,16 +39,8 @@ main section.content-section {
 	margin-top: 12px;
 }
 
-main section.content-section.skillset {
-	padding-block: 0;
-}
-
 .skillset .section-heading {
 	margin-bottom: 24px;
-}
-
-main section.content-section.protfolio {
-	padding-block: clamp(3rem, 6vw, 6rem);
 }
 
 .protfolio .section-heading {
