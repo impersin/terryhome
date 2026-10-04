@@ -2,7 +2,7 @@
 
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Section } from './section';
 
 gsap.registerPlugin(SplitText);
@@ -41,12 +41,39 @@ export function PortfolioPage() {
   const heroKickerRef = useRef<HTMLParagraphElement>(null);
   const heroCtaRef = useRef<HTMLAnchorElement>(null);
   const heroVisualRef = useRef<HTMLDivElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [skillIndex, setSkillIndex] = useState(0);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
 
   const selectSkill = (nextIndex: number) => {
     setSkillIndex((nextIndex + skillItems.length) % skillItems.length);
   };
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+    const desktopQuery = window.matchMedia('(min-width: 768px)');
+    const closeOnDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) setMenuOpen(false);
+    };
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    window.addEventListener('keydown', closeOnEscape);
+    desktopQuery.addEventListener('change', closeOnDesktop);
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      window.removeEventListener('keydown', closeOnEscape);
+      desktopQuery.removeEventListener('change', closeOnDesktop);
+    };
+  }, [menuOpen]);
 
   useLayoutEffect(() => {
     if (!menuPanelRef.current) return;
@@ -145,17 +172,30 @@ export function PortfolioPage() {
     <div className="wrapper noGap" id="wrapper">
       <header>
         <div className="menu">
-          <nav className="navbar-wrapper" ref={menuPanelRef}>
+          <nav className={`navbar-wrapper${menuOpen ? ' is-open' : ''}`} ref={menuPanelRef}>
               <div className="container">
                 <div className="navwrapper">
                   <div className="navbar navbar-inverse navbar-static-top">
                     <div className="container">
                       <div className="navArea">
-                        <ul className="nav navbar-nav">
-                          <li className="menuItem"><a href="#wrapper">Home</a></li>
+                        <a className="nav-brand" href="#wrapper" onClick={() => setMenuOpen(false)}>Taegyu Leem</a>
+                        <button
+                          aria-controls="primary-menu"
+                          aria-expanded={menuOpen}
+                          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+                          className="nav-toggle"
+                          onClick={() => setMenuOpen((open) => !open)}
+                          type="button"
+                        >
+                          <span aria-hidden="true" className="nav-toggle-bar" />
+                          <span aria-hidden="true" className="nav-toggle-bar" />
+                          <span aria-hidden="true" className="nav-toggle-bar" />
+                        </button>
+                        <ul className="nav navbar-nav" id="primary-menu">
+                          <li className="menuItem"><a href="#wrapper" onClick={() => setMenuOpen(false)}>Home</a></li>
                           {sections.map(([label, id], index) => (
                             <li className="menuItem" key={id} ref={(element) => { menuLinksRef.current[index] = element; }}>
-                              <a href={`#${id}`}>{label}</a>
+                              <a href={`#${id}`} onClick={() => setMenuOpen(false)}>{label}</a>
                             </li>
                           ))}
                         </ul>
