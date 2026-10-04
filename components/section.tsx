@@ -38,12 +38,12 @@ export function Section({
         ':scope > .section-container > *',
       );
 
-      gsap.from(revealTargets, {
-        autoAlpha: 0,
+      gsap.fromTo(revealTargets, { autoAlpha: 0, y: 50 }, {
+        autoAlpha: 1,
         duration: 1,
         ease: 'power3.out',
         stagger: 0.12,
-        y: 50,
+        y: 0,
         scrollTrigger: {
           once: true,
           start: 'top 75%',

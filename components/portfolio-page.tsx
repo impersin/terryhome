@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { Section } from "./section";
 
 gsap.registerPlugin(SplitText);
@@ -73,6 +73,7 @@ export function PortfolioPage() {
   const heroKickerRef = useRef<HTMLParagraphElement>(null);
   const heroCtaRef = useRef<HTMLAnchorElement>(null);
   const heroVisualRef = useRef<HTMLDivElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [skillIndex, setSkillIndex] = useState(0);
   const [isOpenLightbox, setOpenLightbox] = useState(false);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
@@ -80,6 +81,32 @@ export function PortfolioPage() {
   const selectSkill = (nextIndex: number) => {
     setSkillIndex((nextIndex + skillItems.length) % skillItems.length);
   };
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    const desktopQuery = window.matchMedia("(min-width: 768px)");
+    const closeOnDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) setMenuOpen(false);
+    };
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    desktopQuery.addEventListener("change", closeOnDesktop);
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+      desktopQuery.removeEventListener("change", closeOnDesktop);
+    };
+  }, [menuOpen]);
 
   useLayoutEffect(() => {
     if (!menuPanelRef.current) return;
@@ -116,6 +143,9 @@ export function PortfolioPage() {
       gsap.set(heroCta, { autoAlpha: 0, y: 16 });
       gsap.set(heroVisual, { autoAlpha: 0, scale: 1.02, y: 200 });
     }
+
+    // The chars are animated individually, so reveal their hidden parents.
+    gsap.set([heroHeading, heroDescription], { autoAlpha: 1 });
 
     timeline.fromTo(
       menuPanelRef.current,
@@ -255,6 +285,7 @@ export function PortfolioPage() {
             <div className="slide">
               <div className="patternOverlay" aria-hidden="true" />
               <img
+                fetchPriority="high"
                 src="https://terryhome.s3.us-west-1.amazonaws.com/hero/landing_image_1.png"
                 alt=""
               />
