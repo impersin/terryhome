@@ -75,6 +75,9 @@ export function PortfolioPage() {
       gsap.set(heroVisual, { autoAlpha: 0, scale: 1.02, y: 200 });
     }
 
+    // The chars are animated individually, so reveal their hidden parents.
+    gsap.set([heroHeading, heroDescription], { autoAlpha: 1 });
+
     timeline.fromTo(
       menuPanelRef.current,
       { autoAlpha: 0, y: -12 },
@@ -174,6 +177,7 @@ export function PortfolioPage() {
             <div className="slide">
               <div className="patternOverlay" aria-hidden="true" />
               <img
+                fetchPriority="high"
                 src="https://terryhome.s3.us-west-1.amazonaws.com/hero/landing_image_1.png"
                 alt=""
               />
