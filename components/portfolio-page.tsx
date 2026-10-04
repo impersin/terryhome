@@ -1,8 +1,11 @@
 'use client';
 
 import { gsap } from 'gsap';
+import { SplitText } from 'gsap/SplitText';
 import { useLayoutEffect, useRef, useState } from 'react';
 import { Section } from './section';
+
+gsap.registerPlugin(SplitText);
 
 const skillItems = [
   ['React · Redux', 'https://terryhome.s3.us-west-1.amazonaws.com/skills/react_redux.png'],
@@ -33,6 +36,7 @@ const sections = [
 export function PortfolioPage() {
   const menuPanelRef = useRef<HTMLElement>(null);
   const menuLinksRef = useRef<(HTMLLIElement | null)[]>([]);
+  const heroHeadingRef = useRef<HTMLHeadingElement>(null);
   const [skillIndex, setSkillIndex] = useState(0);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
 
@@ -72,6 +76,25 @@ export function PortfolioPage() {
     };
   }, []);
 
+  useLayoutEffect(() => {
+    if (!heroHeadingRef.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const splitText = new SplitText(heroHeadingRef.current, { type: 'chars' });
+    const timeline = gsap.timeline();
+
+    timeline.from(splitText.chars, {
+      autoAlpha: 0,
+      duration: 0.5,
+      ease: 'power1.in',
+      stagger: 0.05,
+    });
+
+    return () => {
+      timeline.kill();
+      splitText.revert();
+    };
+  }, []);
+
   return (
     <div className="wrapper noGap" id="wrapper">
       <header>
@@ -100,7 +123,7 @@ export function PortfolioPage() {
         <section className="banner row" id="banner">
           <div className="bannerText">
             <p className="hero-kicker">✦ Frontend engineer / full-stack builder</p>
-            <h1>Hello, I&apos;m <span>Taegyu.</span></h1>
+            <h1 ref={heroHeadingRef}>Hello, I&apos;m <span>Taegyu.</span></h1>
             <h3>I craft thoughtful web experiences that balance clear systems, useful technology, and human detail.</h3>
             <a className="hero-cta" href="#aboutus">Learn more about me <span aria-hidden="true">→</span></a>
           </div>
