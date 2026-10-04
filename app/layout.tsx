@@ -7,6 +7,15 @@ import './custom-lightbox.css';
 export const metadata: Metadata = {
   title: 'TAEGYU LEEM · Full Stack Developer',
   description: "TAEGYU LEEM's Resume & Portfolio",
+  icons: {
+    icon: [
+      {
+        url: '/images/favicons/favicon_terry.png',
+        type: 'image/png',
+        sizes: '32x32',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
