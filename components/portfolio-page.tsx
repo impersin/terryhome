@@ -105,13 +105,14 @@ export function PortfolioPage() {
         stagger: 0.012,
       }, '-=0.8');
 
-      const ctaAndImagePosition = '>';
+      // Continue with the CTA and image animations
       timeline.to(heroCta, {
         autoAlpha: 1,
         duration: 0.45,
         ease: 'power3.out',
         y: 0,
       }, '-=0.5');
+
       timeline.to(heroVisual, {
         autoAlpha: 1,
         duration: 0.8,
