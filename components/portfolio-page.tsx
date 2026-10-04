@@ -236,15 +236,39 @@ export function PortfolioPage() {
     <div className="wrapper noGap" id="wrapper">
       <header>
         <div className="menu">
-          <nav className="navbar-wrapper" ref={menuPanelRef}>
+          <nav
+            className={`navbar-wrapper${menuOpen ? " is-open" : ""}`}
+            ref={menuPanelRef}
+          >
             <div className="container">
               <div className="navwrapper">
                 <div className="navbar navbar-inverse navbar-static-top">
                   <div className="container">
                     <div className="navArea">
-                      <ul className="nav navbar-nav">
+                      <a
+                        className="nav-brand"
+                        href="#wrapper"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        Taegyu Leem
+                      </a>
+                      <button
+                        aria-controls="primary-menu"
+                        aria-expanded={menuOpen}
+                        aria-label={menuOpen ? "Close menu" : "Open menu"}
+                        className="nav-toggle"
+                        onClick={() => setMenuOpen((open) => !open)}
+                        type="button"
+                      >
+                        <span aria-hidden="true" className="nav-toggle-bar" />
+                        <span aria-hidden="true" className="nav-toggle-bar" />
+                        <span aria-hidden="true" className="nav-toggle-bar" />
+                      </button>
+                      <ul className="nav navbar-nav" id="primary-menu">
                         <li className="menuItem">
-                          <a href="#wrapper">Home</a>
+                          <a href="#wrapper" onClick={() => setMenuOpen(false)}>
+                            Home
+                          </a>
                         </li>
                         {sections.map(([label, id], index) => (
                           <li
@@ -254,7 +278,12 @@ export function PortfolioPage() {
                               menuLinksRef.current[index] = element;
                             }}
                           >
-                            <a href={`#${id}`}>{label}</a>
+                            <a
+                              href={`#${id}`}
+                              onClick={() => setMenuOpen(false)}
+                            >
+                              {label}
+                            </a>
                           </li>
                         ))}
                       </ul>
