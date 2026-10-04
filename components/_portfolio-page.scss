@@ -945,3 +945,124 @@ main section.myexperties {
 .skills-mobile-grid {
 	display: none;
 }
+
+/* Navigation: desktop hides the mobile controls, mobile uses a fixed bar with a full-height dropdown */
+.nav-brand,
+.nav-toggle {
+	display: none;
+}
+
+@media screen and (max-width: 767px) {
+	.menu {
+		left: 0;
+		margin: 0;
+		padding: 0;
+		position: fixed;
+		right: 0;
+		top: 0;
+	}
+
+	.navbar-wrapper {
+		height: 56px;
+	}
+
+	.navbar.navbar-inverse.navbar-static-top {
+		margin: 0;
+		min-height: 0;
+	}
+
+	.navArea {
+		align-items: center;
+		display: flex;
+		height: 56px;
+		justify-content: space-between;
+		padding: 0 16px;
+	}
+
+	.navbar.navbar-inverse.navbar-static-top a.nav-brand {
+		color: var(--ink);
+		display: block;
+		font-family: 'Satoshi', Arial, sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		padding: 0;
+	}
+
+	.nav-toggle {
+		align-items: center;
+		background: transparent;
+		border: 0;
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		height: 44px;
+		justify-content: center;
+		margin-right: -10px;
+		padding: 0;
+		width: 44px;
+	}
+
+	.nav-toggle-bar {
+		background: var(--ink);
+		display: block;
+		height: 2px;
+		transition: transform 0.25s ease, opacity 0.2s ease;
+		width: 22px;
+	}
+
+	.is-open .nav-toggle-bar:nth-child(1) {
+		transform: translateY(7px) rotate(45deg);
+	}
+
+	.is-open .nav-toggle-bar:nth-child(2) {
+		opacity: 0;
+	}
+
+	.is-open .nav-toggle-bar:nth-child(3) {
+		transform: translateY(-7px) rotate(-45deg);
+	}
+
+	.navbar-wrapper ul.navbar-nav {
+		align-items: stretch;
+		background: var(--paper);
+		display: flex;
+		flex-direction: column;
+		height: calc(100dvh - 56px);
+		justify-content: center;
+		left: 0;
+		margin: 0;
+		opacity: 0;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		padding: 16px 0;
+		pointer-events: none;
+		position: absolute;
+		top: 56px;
+		transform: translateY(-8px);
+		transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+		visibility: hidden;
+		width: 100%;
+	}
+
+	.navbar-wrapper.is-open ul.navbar-nav {
+		opacity: 1;
+		pointer-events: auto;
+		transform: none;
+		transition-delay: 0s;
+		visibility: visible;
+	}
+
+	.navbar-wrapper ul.navbar-nav > li > a {
+		color: var(--ink) !important;
+		font-size: 12px !important;
+		padding: 18px 24px !important;
+		text-transform: uppercase;
+	}
+
+	.navbar-wrapper ul.navbar-nav > li > a:hover,
+	.navbar-wrapper ul.navbar-nav > li > a:focus {
+		background: var(--accent-soft) !important;
+		color: var(--accent) !important;
+	}
+}

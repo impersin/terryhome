@@ -51,3 +51,17 @@ main section.content-section > .section-container {
 .contactDetails .section-heading-accessory a {
 	color: var(--surface);
 }
+
+/* Initial hidden state for GSAP-animated elements, applied before first paint by the inline script in layout.tsx */
+html.js-anim {
+	.navbar-wrapper,
+	.hero-kicker,
+	.hero-cta,
+	.banner .slides-container,
+	.banner .bannerText h1,
+	.banner .bannerText h3,
+	main section.content-section > .section-container > * {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
