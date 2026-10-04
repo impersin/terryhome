@@ -1,7 +1,7 @@
 'use client';
 
 import { gsap } from 'gsap';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { Section } from './section';
 
 const skillItems = [
@@ -31,12 +31,8 @@ const sections = [
 ] as const;
 
 export function PortfolioPage() {
-  const menuRef = useRef<HTMLDivElement>(null);
   const menuPanelRef = useRef<HTMLElement>(null);
   const menuLinksRef = useRef<(HTMLLIElement | null)[]>([]);
-  const menuTimelineRef = useRef<gsap.core.Timeline | null>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [menuRendered, setMenuRendered] = useState(false);
   const [skillIndex, setSkillIndex] = useState(0);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
 
@@ -44,117 +40,53 @@ export function PortfolioPage() {
     setSkillIndex((nextIndex + skillItems.length) % skillItems.length);
   };
 
-  const openMenu = () => {
-    menuTimelineRef.current?.kill();
-    menuTimelineRef.current = null;
-    setMenuRendered(true);
-    setMenuOpen(true);
-  };
-
-  const closeMenu = () => setMenuOpen(false);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-
-    const closeOutsideMenu = (event: PointerEvent) => {
-      if (!menuRef.current?.contains(event.target as Node)) {
-        closeMenu();
-      }
-    };
-
-    document.addEventListener('pointerdown', closeOutsideMenu);
-    return () => document.removeEventListener('pointerdown', closeOutsideMenu);
-  }, [menuOpen]);
-
   useLayoutEffect(() => {
-    if (!menuRendered || !menuPanelRef.current) return;
+    if (!menuPanelRef.current) return;
 
-    if (menuOpen) {
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const menuLinks = menuLinksRef.current.filter(
-        (link): link is HTMLLIElement => link !== null,
-      );
-      const timeline = gsap.timeline({ paused: true });
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const menuLinks = menuLinksRef.current.filter(
+      (link): link is HTMLLIElement => link !== null,
+    );
+    const timeline = gsap.timeline();
 
-      timeline.fromTo(
-        menuPanelRef.current,
-        { autoAlpha: 0, y: -12 },
-        { autoAlpha: 1, duration: prefersReducedMotion ? 0 : 0.22, ease: 'power3.out', y: 0 },
-      );
-      timeline.fromTo(
-        menuLinks,
-        { autoAlpha: 0, y: -8 },
-        {
-          autoAlpha: 1,
-          duration: prefersReducedMotion ? 0 : 0.2,
-          ease: 'power3.out',
-          stagger: prefersReducedMotion ? 0 : 0.025,
-          y: 0,
-        },
-        prefersReducedMotion ? 0 : 0.04,
-      );
+    timeline.fromTo(
+      menuPanelRef.current,
+      { autoAlpha: 0, y: -12 },
+      { autoAlpha: 1, duration: prefersReducedMotion ? 0 : 0.5, ease: 'power3.out', y: 0 },
+    );
+    timeline.fromTo(
+      menuLinks,
+      { autoAlpha: 0, y: -8 },
+      {
+        autoAlpha: 1,
+        duration: prefersReducedMotion ? 0 : 0.5,
+        ease: 'power3.out',
+        stagger: prefersReducedMotion ? 0 : 0.09,
+        y: 0,
+      },
+      prefersReducedMotion ? 0 : 0.09,
+    );
 
-      menuTimelineRef.current = timeline;
-      timeline.play(0);
-      return;
-    }
-
-    const timeline = menuTimelineRef.current;
-    if (!timeline) {
-      setMenuRendered(false);
-      return;
-    }
-
-    timeline.eventCallback('onReverseComplete', () => {
-      setMenuRendered(false);
-      menuTimelineRef.current = null;
-    });
-    timeline.reverse();
-  }, [menuOpen, menuRendered]);
-
-  useEffect(() => () => {
-    menuTimelineRef.current?.kill();
+    return () => {
+      timeline.kill();
+    };
   }, []);
 
   return (
     <div className="wrapper noGap" id="wrapper">
       <header>
-        <div className={`menu ${menuOpen ? 'menu-open' : ''}`} ref={menuRef}>
-          <button
-            className="nav-icon"
-            type="button"
-            aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
-            aria-expanded={menuOpen}
-            onClick={() => (menuOpen ? closeMenu() : openMenu())}
-          >
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="9" />
-              <path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8 4.8-2.2Z" />
-            </svg>
-          </button>
-          {menuRendered && (
-            <nav
-              className={`navbar-wrapper ${menuOpen ? 'is-open' : 'is-closing'}`}
-              ref={menuPanelRef}
-            >
+        <div className="menu">
+          <nav className="navbar-wrapper" ref={menuPanelRef}>
               <div className="container">
                 <div className="navwrapper">
                   <div className="navbar navbar-inverse navbar-static-top">
                     <div className="container">
                       <div className="navArea">
-                        <button
-                          className="closeMenu"
-                          type="button"
-                          aria-label="Close navigation"
-                          onClick={closeMenu}
-                        >
-                          ×
-                        </button>
                         <ul className="nav navbar-nav">
-                          <li className="menuItem"><a href="#wrapper" onClick={closeMenu}>Home</a></li>
+                          <li className="menuItem"><a href="#wrapper">Home</a></li>
                           {sections.map(([label, id], index) => (
                             <li className="menuItem" key={id} ref={(element) => { menuLinksRef.current[index] = element; }}>
-                              <a href={`#${id}`} onClick={closeMenu}>{label}</a>
+                              <a href={`#${id}`}>{label}</a>
                             </li>
                           ))}
                         </ul>
@@ -163,8 +95,7 @@ export function PortfolioPage() {
                   </div>
                 </div>
               </div>
-            </nav>
-          )}
+          </nav>
         </div>
         <section className="banner row" id="banner">
           <div className="bannerText">
@@ -230,6 +161,14 @@ export function PortfolioPage() {
                 <button className="tc-prev" type="button" onClick={() => selectSkill(skillIndex - 1)}>Previous</button>
                 <button className="tc-next" type="button" onClick={() => selectSkill(skillIndex + 1)}>Next</button>
               </div>
+            </div>
+            <div className="skills-mobile-grid" role="list">
+              {skillItems.map(([name, image]) => (
+                <div className="skills-mobile-card" key={name} role="listitem">
+                  <img src={image} alt="" />
+                  <span>{name}</span>
+                </div>
+              ))}
             </div>
         </Section>
 
