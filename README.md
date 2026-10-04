@@ -21,4 +21,4 @@ The contact form posts to `/api/contact`; email credentials are only read by the
 
 ## Heroku Review Apps
 
-`app.json` configures preview deployments through Heroku Review Apps. Enable Review Apps for the Heroku pipeline connected to this repository; Heroku's Node.js buildpack runs `npm run build` and the web process uses `npm start`.
+`app.json` configures preview deployments through Heroku Review Apps. Enable Review Apps for the Heroku pipeline connected to this repository; Heroku's Node.js buildpack runs `npm run build` and the web process uses `npm start`. The app pins Node.js 22 and npm 10 in `package.json`; keep `package-lock.json` generated with npm 10 so Heroku can run `npm ci`.
