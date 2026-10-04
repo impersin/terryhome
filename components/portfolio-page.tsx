@@ -37,6 +37,8 @@ export function PortfolioPage() {
   const menuPanelRef = useRef<HTMLElement>(null);
   const menuLinksRef = useRef<(HTMLLIElement | null)[]>([]);
   const heroHeadingRef = useRef<HTMLHeadingElement>(null);
+  const heroDescriptionRef = useRef<HTMLHeadingElement>(null);
+  const heroCtaRef = useRef<HTMLAnchorElement>(null);
   const heroVisualRef = useRef<HTMLDivElement>(null);
   const [skillIndex, setSkillIndex] = useState(0);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
@@ -54,13 +56,20 @@ export function PortfolioPage() {
     );
     const timeline = gsap.timeline();
     const heroHeading = heroHeadingRef.current;
+    const heroDescription = heroDescriptionRef.current;
+    const heroCta = heroCtaRef.current;
     const heroVisual = heroVisualRef.current;
-    const splitText = !prefersReducedMotion && heroHeading && heroVisual
-      ? new SplitText(heroHeading, { type: 'chars' })
-      : null;
+    const canAnimateHero = !prefersReducedMotion
+      && heroHeading
+      && heroDescription
+      && heroCta
+      && heroVisual;
+    const headingSplitText = canAnimateHero ? new SplitText(heroHeading, { type: 'chars' }) : null;
+    const descriptionSplitText = canAnimateHero ? new SplitText(heroDescription, { type: 'chars' }) : null;
 
-    if (splitText && heroVisual) {
-      gsap.set(splitText.chars, { autoAlpha: 0 });
+    if (headingSplitText && descriptionSplitText && heroCta && heroVisual) {
+      gsap.set([headingSplitText.chars,descriptionSplitText.chars ], { autoAlpha: 0 });
+      gsap.set(heroCta, { autoAlpha: 0, y: 16 });
       gsap.set(heroVisual, { autoAlpha: 0, scale: 1.02, y: 200 });
     }
 
@@ -81,14 +90,28 @@ export function PortfolioPage() {
       },
       prefersReducedMotion ? 0 : 0.09,
     );
-    if (splitText && heroVisual) {
-      timeline.to(splitText.chars, {
+    if (headingSplitText && descriptionSplitText && heroCta && heroVisual) {
+      timeline.to(headingSplitText.chars, {
         autoAlpha: 1,
         duration: 0.5,
         ease: 'power1.in',
         stagger: 0.05,
       }, '-=0.5');
 
+      timeline.to(descriptionSplitText.chars, {
+        autoAlpha: 1,
+        duration: 0.35,
+        ease: 'power1.in',
+        stagger: 0.012,
+      }, '-=0.8');
+
+      const ctaAndImagePosition = '>';
+      timeline.to(heroCta, {
+        autoAlpha: 1,
+        duration: 0.45,
+        ease: 'power3.out',
+        y: 0,
+      }, '-=0.5');
       timeline.to(heroVisual, {
         autoAlpha: 1,
         duration: 0.8,
@@ -100,7 +123,8 @@ export function PortfolioPage() {
 
     return () => {
       timeline.kill();
-      splitText?.revert();
+      descriptionSplitText?.revert();
+      headingSplitText?.revert();
     };
   }, []);
 
@@ -133,8 +157,8 @@ export function PortfolioPage() {
           <div className="bannerText">
             <p className="hero-kicker">✦ Software Engineer</p>
             <h1 ref={heroHeadingRef}>Hello, I&apos;m <span>Taegyu.</span></h1>
-            <h3>I craft thoughtful web experiences that balance clear systems, useful technology, and human detail.</h3>
-            <a className="hero-cta" href="#aboutus">Learn more about me <span aria-hidden="true">→</span></a>
+            <h3 ref={heroDescriptionRef}>I turn complex ideas into simple, intuitive, and meaningful digital experiences.</h3>
+            <a className="hero-cta" href="#aboutus" ref={heroCtaRef}>Learn more about me <span aria-hidden="true">→</span></a>
           </div>
           <div className="slides-container" ref={heroVisualRef}>
             <div className="slide">
