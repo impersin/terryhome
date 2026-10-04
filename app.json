@@ -1,0 +1,16 @@
+{
+  "name": "terryhome-preview",
+  "description": "A Next.js portfolio site for Heroku Review App previews.",
+  "repository": "https://github.com/impersin/terryhome",
+  "keywords": [
+    "nextjs",
+    "portfolio",
+    "react"
+  ],
+  "stack": "heroku-24",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

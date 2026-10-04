@@ -1,0 +1,58 @@
+/* Shared section rhythm */
+main section.content-section {
+	padding-block: clamp(3rem, 6vw, 6rem);
+}
+
+.section-container {
+	margin-inline: auto;
+}
+
+.section-heading {
+	margin: 0 0 clamp(2rem, 5vw, 4rem);
+	min-height: 0;
+	padding: 0;
+}
+
+.section-heading h2 {
+	margin: 0;
+}
+
+.section-heading h2::after {
+	background: #00a6d6 !important;
+}
+
+.section-heading--center {
+	text-align: center;
+}
+
+.section-heading--left {
+	text-align: left;
+}
+
+.section-heading-accessory {
+	color: var(--muted);
+	font-family: 'IBM Plex Mono', ui-monospace, monospace;
+	font-size: 13px;
+	margin-top: 12px;
+}
+
+main section.content-section.skillset {
+	padding-block: 0;
+}
+
+.skillset .section-heading {
+	margin-bottom: 24px;
+}
+
+main section.content-section.protfolio {
+	padding-block: clamp(3rem, 6vw, 6rem);
+}
+
+.protfolio .section-heading {
+	margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.contactDetails .section-heading-accessory,
+.contactDetails .section-heading-accessory a {
+	color: var(--surface);
+}
